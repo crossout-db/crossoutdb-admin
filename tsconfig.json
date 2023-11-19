@@ -43,6 +43,9 @@
       "@public": [
         "public"
       ],
+      "@server/*": [
+        "src/server/*"
+      ],
       "@server": [
         "src/server"
       ],
@@ -58,6 +61,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "zenstack"
   ]
 }

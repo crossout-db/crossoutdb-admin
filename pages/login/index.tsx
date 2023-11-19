@@ -8,7 +8,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { AppIcon } from "src/components/app-icon";
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]";
+import { authOptions } from "~/server/auth";
 
 export default function Login() {
   const { mutate: login } = useLogin();

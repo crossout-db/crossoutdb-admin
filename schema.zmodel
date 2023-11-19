@@ -1,0 +1,505 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    // Further reading:
+    // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
+    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
+    url      = env("DATABASE_URL")
+}
+
+// plugin hooks {
+//     provider = '@zenstackhq/swr'
+//     output = "zenstack/generated/swr/hooks"
+// }
+
+plugin trpc {
+    provider = '@zenstackhq/trpc'
+    output = 'zenstack/generated/trpc'
+    generateClientHelpers = 'next'
+    // generateModelActions = 'aggregate,createMany,create,deleteMany,delete,findFirst,findFirstOrThrow,findMany,findUnique,findUniqueOrThrow,groupBy,updateMany,update,upsert,count'
+}
+
+model Release {
+    id Int @id @default(autoincrement())
+    name String
+    xoVersion String?
+    build String?
+    description String?
+    battlePass String?
+    url String?
+    startDate DateTime?
+    endDate DateTime?
+    active Boolean @default(true)
+    itemStats ItemStats[]
+    recipes Recipe[]
+    packs Pack[]
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN and CONTRIBUTOR
+    @@allow('create,update', auth().role == "ADMIN" || auth().role == "CONTRIBUTOR")
+
+    // only the ADMIN
+    @@allow('delete', auth().role == "ADMIN")
+}
+
+model Recipe {
+    id Int @id @default(autoincrement())
+    name String @default("Recipe_Primary")
+    item Item @relation(fields: [itemId], references: [id])
+    itemId Int
+    quantity Int
+    release Release? @relation(fields: [releaseId], references: [id])
+    releaseId Int @default(1)
+    craftCost Int?
+    timestamp DateTime? @default(now())
+    active Boolean @default(true)
+    ingredients RecipeItem[]
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN and CONTRIBUTOR
+    @@allow('create,update', auth().role == "ADMIN" || auth().role == "CONTRIBUTOR")
+
+    // only the ADMIN
+    @@allow('delete', auth().role == "ADMIN")
+}
+
+model RecipeItem {
+    id Int @id @default(autoincrement())
+    recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+    recipeId Int
+    item Item @relation(fields: [itemId], references: [id])
+    itemId Int
+    quantity Int
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN and CONTRIBUTOR
+    @@allow('create,update,delete', auth().role == "ADMIN" || auth().role == "CONTRIBUTOR")
+}
+
+model Pack {
+    id Int @id @default(autoincrement())
+    name String
+    description String?
+    steamAppId Int
+    key String?
+    coins Int
+    release Release? @relation(fields: [releaseId], references: [id])
+    releaseId Int @default(1)
+    active Boolean @default(true)
+    items PackItem[]
+    steamAppPrices SteamAppPrice[]
+
+    @@unique([steamAppId])
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN and CONTRIBUTOR
+    @@allow('create,update', auth().role == "ADMIN" || auth().role == "CONTRIBUTOR")
+
+    // only the ADMIN
+    @@allow('delete', auth().role == "ADMIN")
+}
+
+model PackItem {
+    id Int @id @default(autoincrement())
+    pack Pack @relation(fields: [packId], references: [id], onDelete: Cascade)
+    packId Int
+    item Item @relation(fields: [itemId], references: [id])
+    itemId Int
+    quantity Int
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN and CONTRIBUTOR
+    @@allow('create,update,delete', auth().role == "ADMIN" || auth().role == "CONTRIBUTOR")
+}
+
+model SteamAppPrice {
+    id Int @id @default(autoincrement())
+    pack Pack @relation(fields: [steamAppId], references: [steamAppId], onDelete: Cascade)
+    steamAppId Int
+    timestamp DateTime @default(now())
+    priceUSD Int
+    priceEUR Int
+    priceGBP Int
+    priceRUB Int
+    discount Int
+
+    // everyone can read
+    @@allow('read', true)
+
+    // only the ADMIN
+    @@allow('create,update,delete', auth().role == "ADMIN")
+}
+
+model Category {
+    id Int @id @default(autoincrement())
+    name String
+    items Item[]
+    translations Translation[]
+
+    @@unique([name])
+    
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN
+    @@allow('create,update,delete', auth().role == "ADMIN")
+}
+
+model Faction {
+    id Int @id @default(autoincrement())
+    name String
+    items Item[]
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN
+    @@allow('create,update,delete', auth().role == "ADMIN")
+}
+
+model Type {
+    id Int @id @default(autoincrement())
+    name String
+    items Item[]
+    translations Translation[]
+
+    @@unique([name])
+    
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN
+    @@allow('create,update,delete', auth().role == "ADMIN")
+}
+
+enum RarityImportEnum {
+    BASE
+    COMMON
+    RARE
+    VERY_RARE
+    EPIC
+    LEGENDARY
+    EXOTIC
+}
+
+model Rarity {
+    id Int @id @default(autoincrement())
+    name String
+    importKey RarityImportEnum
+    primaryColor String
+    secondaryColor String
+    items Item[]
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN
+    @@allow('create,update,delete', auth().role == "ADMIN")
+}
+
+model Item {
+    id Int @id @default(autoincrement())
+    oldId Int?
+    name String
+    marketDef String? @omit
+    quantity Int
+    type Type @relation(fields: [typeId], references: [id])
+    typeId Int
+    oldTypeId Int?
+    category Category @relation(fields: [categoryId], references: [id])
+    categoryId Int
+    faction Faction @relation(fields: [factionId], references: [id])
+    factionId Int
+    rarity Rarity @relation(fields: [rarityId], references: [id])
+    rarityId Int
+    level Int @default(0)
+    sellPriceMin Int?
+    sellOrders Int?
+    buyPriceMax Int?
+    buyOrders Int?
+    craftCost Int?
+    timestamp DateTime? @default(now())
+    saleable Boolean @default(true)
+    active Boolean @default(true)
+    logId Int?
+
+    itemStats ItemStats[]
+    market Market[]
+    badgeExchange BadgeExchange[]
+    recipes Recipe[]
+    recipeItems RecipeItem[]
+    packItems PackItem[]
+    itemSynergies SynergyItem[]
+    translations Translation[]
+
+    // Define a unique constraint on itemId
+    @@unique([name])
+    @@unique([marketDef])
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN
+    @@allow('create,update,delete', auth().role == "ADMIN")
+}
+
+model ItemStats {
+    id Int @id @default(autoincrement())
+    item Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
+    itemId Int
+    user User @relation(fields: [userId], references: [id])
+    userId String
+    release Release? @relation(fields: [releaseId], references: [id])
+    releaseId Int @default(1)
+    timestamp DateTime @default(now())
+    description String?
+    increasesDurability Int?
+    increasesReputationPercent Int?
+    topSpeed Int?
+    ps Int?
+    damage Float?
+    fireRate Float?
+    range Float?
+    accuracy Float?
+    timeToOverheating Float?
+    maxAmmo Int?
+    blastPower Float?
+    addsEnergy Int?
+    tonnage Int?
+    massLimit Int?
+    maxCabinSpeed Int?
+    maxChassisSpeed Int?
+    power Int?
+    cabinPower Float?
+    fuelReserves Int?
+    featureBulletPercent Int?
+    featureMeleePercent Int?
+    featureBlastPercent Int?
+    featureFirePercent Int?
+    featurePassthroughPercent Int?
+    durability Int?
+    energyDrain Int?
+    mass Int?
+    perks String?
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN and CONTRIBUTOR
+    @@allow('create,update', auth().role == "ADMIN" || auth().role == "CONTRIBUTOR")
+
+    // only the ADMIN
+    @@allow('delete', auth().role == "ADMIN")
+}
+
+model Synergy {
+    id Int @id @default(autoincrement())
+    name String
+    synergyItems SynergyItem[]
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN and CONTRIBUTOR
+    @@allow('create,update', auth().role == "ADMIN" || auth().role == "CONTRIBUTOR")
+
+    // only the ADMIN
+    @@allow('delete', auth().role == "ADMIN")
+}
+
+model SynergyItem {
+    synergy Synergy @relation(fields: [synergyId], references: [id], onDelete: Cascade)
+    synergyId Int
+    item Item @relation(fields: [itemId], references: [id])
+    itemId Int
+
+    @@id([synergyId, itemId])
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN and CONTRIBUTOR
+    @@allow('create,update, delete', auth().role == "ADMIN" || auth().role == "CONTRIBUTOR")
+}
+
+model Market {
+    id Int @id @default(autoincrement())
+    item Item @relation(fields: [itemId], references: [id])
+    itemId Int
+    marketDef String @omit
+    sellPriceMin Int
+    sellOrders Int
+    buyPriceMax Int
+    buyOrders Int
+    craftCost Int?
+    timestamp DateTime @default(now())
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN
+    @@allow('create,update,delete', auth().role == "ADMIN")
+}
+
+model BadgeExchange {
+    id Int @id @default(autoincrement())
+    item Item @relation(fields: [itemId], references: [id])
+    itemId Int
+    quantity Int
+    badges Int
+    active Boolean @default(true)
+    timestamp DateTime @default(now())
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN and CONTRIBUTOR
+    @@allow('create,update', auth().role == "ADMIN" || auth().role == "CONTRIBUTOR")
+
+    // only the ADMIN
+    @@allow('delete', auth().role == "ADMIN")
+}
+
+model Log {
+    id Int @id @default(autoincrement())
+    timestamp DateTime @default(now())
+    user User @relation(fields: [userId], references: [id])
+    userId String
+    tableChanged String
+    recordId Int
+    record Json
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN and CONTRIBUTOR
+    @@allow('create,update', auth().role == "ADMIN" || auth().role == "CONTRIBUTOR")
+
+    // only the ADMIN
+    @@allow('delete', auth().role == "ADMIN")
+}
+
+// Necessary for Next auth
+model Account {
+    id String @id @default(cuid())
+    userId String
+    type String
+    provider String
+    providerAccountId String
+    refresh_token String? // @db.Text
+    access_token String? // @db.Text
+    expires_at Int?
+    token_type String?
+    scope String?
+    id_token String? // @db.Text
+    session_state String?
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+}
+
+model Session {
+    id String @id @default(cuid())
+    sessionToken String @unique
+    userId String
+    expires DateTime
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum UserRole {
+    USER
+    CONTRIBUTOR
+    ADMIN
+}
+
+model User {
+    id String @id @default(cuid())
+    name String?
+    role UserRole @default(USER)
+    email String? @unique @omit
+    emailVerified DateTime? @omit
+    image String? @omit
+    accounts Account[]
+    sessions Session[]
+    itemStats ItemStats[]
+    log Log[]
+
+    // everyone can create a profile
+    @@allow('read,create', true)
+
+    // only the user can read or delete their own profile
+    @@allow('delete', auth() == this || auth().role == "ADMIN")
+
+    // only the ADMIN can update a profile
+    @@allow('update', auth().role == "ADMIN")
+}
+
+model VerificationToken {
+    identifier String
+    token String @unique
+    expires DateTime
+
+    @@unique([identifier, token])
+}
+
+model Country {
+    code String @id
+    name String
+    currency String
+    currencyCode String
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN
+    @@allow('create,update,delete', auth().role == "ADMIN")
+}
+
+model Language {
+    code String @id
+    name String
+
+    translations Translation[]
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN
+    @@allow('create,update,delete', auth().role == "ADMIN")
+}
+
+model Translation {
+    id Int @id @default(autoincrement())
+    language Language @relation(fields: [languageCode], references: [code])
+    languageCode String
+    key String 
+    value String
+
+    categories Category[]
+    types Type[]
+    items Item[]
+
+    @@unique([languageCode, key])
+
+    // everyone
+    @@allow('read', true)
+
+    // only the ADMIN
+    @@allow('create,update,delete', auth().role == "ADMIN")
+}
