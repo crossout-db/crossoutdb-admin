@@ -3,6 +3,7 @@ import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker, Checkbox, InputNumber } from "antd";
 import dayjs from "dayjs";
+import { ItemStatList } from "../itemstats";
 
 export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -219,6 +220,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <Checkbox>Active</Checkbox>
                 </Form.Item>
             </Form>
+            {itemData?.id && <ItemStatList parentId={itemData?.id as number} />}
         </Edit>
     );
 };

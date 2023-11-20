@@ -15,6 +15,7 @@ import {
 } from "@refinedev/antd";
 import { Typography } from "antd";
 import { RecipeItemChildList } from "./childList";
+import { RecipeItemList } from "../recipeitems";
 
 const { Title } = Typography;
 
@@ -42,30 +43,28 @@ export const RecipeShow: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <>
-            <Show isLoading={isLoading}>
-                <Title level={5}>{translate("recipe.fields.id")}</Title>
-                <NumberField value={record?.id ?? ""} />
-                <Title level={5}>{translate("recipe.fields.name")}</Title>
-                <TextField value={record?.name} />
-                <Title level={5}>{translate("recipe.fields.itemId")}</Title>
-                {itemIsLoading ? <>Loading...</> : <>{itemData?.data?.name}</>}
-                <Title level={5}>{translate("recipe.fields.quantity")}</Title>
-                <NumberField value={record?.quantity ?? ""} />
-                <Title level={5}>{translate("recipe.fields.releaseId")}</Title>
-                {releaseIsLoading ? (
-                    <>Loading...</>
-                ) : (
-                    <>{releaseData?.data?.name}</>
-                )}
-                <Title level={5}>{translate("recipe.fields.craftCost")}</Title>
-                <NumberField value={record?.craftCost ?? ""} />
-                <Title level={5}>{translate("recipe.fields.timestamp")}</Title>
-                <DateField value={record?.timestamp} />
-                <Title level={5}>{translate("recipe.fields.active")}</Title>
-                <BooleanField value={record?.active} />
-            </Show>
-            {record?.id && <RecipeItemChildList parentId={record?.id as number} />}
-        </>
+        <Show isLoading={isLoading}>
+            <Title level={5}>{translate("recipe.fields.id")}</Title>
+            <NumberField value={record?.id ?? ""} />
+            <Title level={5}>{translate("recipe.fields.name")}</Title>
+            <TextField value={record?.name} />
+            <Title level={5}>{translate("recipe.fields.itemId")}</Title>
+            {itemIsLoading ? <>Loading...</> : <>{itemData?.data?.name}</>}
+            <Title level={5}>{translate("recipe.fields.quantity")}</Title>
+            <NumberField value={record?.quantity ?? ""} />
+            <Title level={5}>{translate("recipe.fields.releaseId")}</Title>
+            {releaseIsLoading ? (
+                <>Loading...</>
+            ) : (
+                <>{releaseData?.data?.name}</>
+            )}
+            <Title level={5}>{translate("recipe.fields.craftCost")}</Title>
+            <NumberField value={record?.craftCost ?? ""} />
+            <Title level={5}>{translate("recipe.fields.timestamp")}</Title>
+            <DateField value={record?.timestamp} />
+            <Title level={5}>{translate("recipe.fields.active")}</Title>
+            <BooleanField value={record?.active} />
+            {record?.id && <RecipeItemList parentId={record?.id as number} />}
+        </Show>
     );
 };

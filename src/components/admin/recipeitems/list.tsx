@@ -5,13 +5,34 @@ import {
     useTranslate,
     useMany,
 } from "@refinedev/core";
-import { useTable, List, EditButton, ShowButton } from "@refinedev/antd";
+import {
+    useTable,
+    List,
+    EditButton,
+    ShowButton,
+    DeleteButton,
+} from "@refinedev/antd";
 import { Table, Space } from "antd";
 
-export const RecipeItemList: React.FC<IResourceComponentsProps> = () => {
+interface RecipeItemListProps extends IResourceComponentsProps {
+    parentId?: number;
+}
+
+export const RecipeItemList: React.FC<RecipeItemListProps> = ({ parentId }) => {
     const translate = useTranslate();
     const { tableProps } = useTable({
-        syncWithLocation: true,
+        syncWithLocation: false,
+        resource: "recipeItem",
+        filters: {
+            mode: "server",
+            permanent: [
+                {
+                    field: "recipeId",
+                    operator: "eq",
+                    value: parentId,
+                },
+            ],
+        },
     });
 
     const { data: recipeData, isLoading: recipeIsLoading } = useMany({
@@ -19,6 +40,11 @@ export const RecipeItemList: React.FC<IResourceComponentsProps> = () => {
         ids: tableProps?.dataSource?.map((item) => item?.recipeId) ?? [],
         queryOptions: {
             enabled: !!tableProps?.dataSource,
+        },
+        meta: {
+            include: {
+                item: true,
+            },
         },
     });
 
@@ -31,7 +57,12 @@ export const RecipeItemList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <List>
+        <List
+            resource="recipeItem"
+            breadcrumb
+            canCreate={!!parentId}
+            createButtonProps={{ meta: { recipeId: parentId } }}
+        >
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
@@ -45,7 +76,7 @@ export const RecipeItemList: React.FC<IResourceComponentsProps> = () => {
                             <>Loading...</>
                         ) : (
                             recipeData?.data?.find((item) => item.id === value)
-                                ?.name
+                                ?.item.name
                         )
                     }
                 />
@@ -71,15 +102,25 @@ export const RecipeItemList: React.FC<IResourceComponentsProps> = () => {
                     render={(_, record: BaseRecord) => (
                         <Space>
                             <EditButton
+                                resource="recipeItem"
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
                             />
                             <ShowButton
+                                resource="recipeItem"
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
                             />
+                            {parentId && (
+                                <DeleteButton
+                                    resource="recipeItem"
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            )}
                         </Space>
                     )}
                 />

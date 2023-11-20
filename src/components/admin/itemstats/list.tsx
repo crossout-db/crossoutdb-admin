@@ -12,13 +12,29 @@ import {
     ShowButton,
     DateField,
     MarkdownField,
+    DeleteButton,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
-export const ItemStatList: React.FC<IResourceComponentsProps> = () => {
+interface ItemStatListProps extends IResourceComponentsProps {
+    parentId?: number;
+}
+
+export const ItemStatList: React.FC<ItemStatListProps> = ({ parentId }) => {
     const translate = useTranslate();
     const { tableProps } = useTable({
-        syncWithLocation: true,
+        syncWithLocation: false,
+        resource: "itemStats",
+        filters: {
+            mode: "server",
+            permanent: [
+                {
+                    field: "itemId",
+                    operator: "eq",
+                    value: parentId,
+                },
+            ],
+        },
     });
 
     const { data: itemData, isLoading: itemIsLoading } = useMany({
@@ -46,7 +62,12 @@ export const ItemStatList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <List>
+        <List
+            resource="itemStats"
+            breadcrumb
+            canCreate={!!parentId}
+            createButtonProps={{ meta: { itemId: parentId } }}
+        >
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
@@ -107,7 +128,7 @@ export const ItemStatList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column
                     dataIndex="increasesReputationPercent"
                     title={translate(
-                        "itemStats.fields.increasesReputationPercent",
+                        "itemStats.fields.increasesReputationPercent"
                     )}
                 />
                 <Table.Column
@@ -197,7 +218,7 @@ export const ItemStatList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column
                     dataIndex="featurePassthroughPercent"
                     title={translate(
-                        "itemStats.fields.featurePassthroughPercent",
+                        "itemStats.fields.featurePassthroughPercent"
                     )}
                 />
                 <Table.Column
@@ -231,6 +252,14 @@ export const ItemStatList: React.FC<IResourceComponentsProps> = () => {
                                 size="small"
                                 recordItemId={record.id}
                             />
+                            {parentId && (
+                                <DeleteButton
+                                    resource="recipeItem"
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            )}
                         </Space>
                     )}
                 />

@@ -5,13 +5,34 @@ import {
     useTranslate,
     useMany,
 } from "@refinedev/core";
-import { useTable, List, EditButton, ShowButton } from "@refinedev/antd";
+import {
+    useTable,
+    List,
+    EditButton,
+    ShowButton,
+    DeleteButton,
+} from "@refinedev/antd";
 import { Table, Space } from "antd";
 
-export const PackItemList: React.FC<IResourceComponentsProps> = () => {
+interface PackItemListProps extends IResourceComponentsProps {
+    parentId?: number;
+}
+
+export const PackItemList: React.FC<PackItemListProps> = ({ parentId }) => {
     const translate = useTranslate();
     const { tableProps } = useTable({
-        syncWithLocation: true,
+        syncWithLocation: false,
+        resource: "packItem",
+        filters: {
+            mode: "server",
+            permanent: [
+                {
+                    field: "packId",
+                    operator: "eq",
+                    value: parentId,
+                },
+            ],
+        },
     });
 
     const { data: packData, isLoading: packIsLoading } = useMany({
@@ -31,7 +52,12 @@ export const PackItemList: React.FC<IResourceComponentsProps> = () => {
     });
 
     return (
-        <List>
+        <List
+            resource="packItem"
+            breadcrumb
+            canCreate={!!parentId}
+            createButtonProps={{ meta: { packId: parentId } }}
+        >
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
@@ -80,6 +106,14 @@ export const PackItemList: React.FC<IResourceComponentsProps> = () => {
                                 size="small"
                                 recordItemId={record.id}
                             />
+                            {parentId && (
+                                <DeleteButton
+                                    resource="recipeItem"
+                                    hideText
+                                    size="small"
+                                    recordItemId={record.id}
+                                />
+                            )}
                         </Space>
                     )}
                 />

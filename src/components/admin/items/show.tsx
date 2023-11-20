@@ -14,6 +14,7 @@ import {
     BooleanField,
 } from "@refinedev/antd";
 import { Typography } from "antd";
+import { ItemStatList } from "../itemstats";
 
 const { Title } = Typography;
 
@@ -98,6 +99,7 @@ export const ItemShow: React.FC<IResourceComponentsProps> = () => {
             <BooleanField value={record?.saleable} />
             <Title level={5}>{translate("item.fields.active")}</Title>
             <BooleanField value={record?.active} />
+            {record?.id && <ItemStatList parentId={record?.id as number} />}
         </Show>
     );
 };

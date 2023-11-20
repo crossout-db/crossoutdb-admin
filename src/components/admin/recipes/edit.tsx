@@ -3,6 +3,7 @@ import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker, Checkbox, InputNumber } from "antd";
 import dayjs from "dayjs";
+import { RecipeItemList } from "../recipeitems";
 
 export const RecipeEdit: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -118,6 +119,7 @@ export const RecipeEdit: React.FC<IResourceComponentsProps> = () => {
                     <Checkbox>Active</Checkbox>
                 </Form.Item>
             </Form>
+            {recipeData?.id && <RecipeItemList parentId={recipeData?.id as number} />}
         </Edit>
     );
 };

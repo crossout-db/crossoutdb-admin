@@ -2,6 +2,7 @@ import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, Checkbox, InputNumber } from "antd";
+import { PackItemList } from "../packitems";
 
 export const PackEdit: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -86,6 +87,7 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
                     <Checkbox>Active</Checkbox>
                 </Form.Item>
             </Form>
+            {packData?.id && <PackItemList parentId={packData?.id as number} />}
         </Edit>
     );
 };
