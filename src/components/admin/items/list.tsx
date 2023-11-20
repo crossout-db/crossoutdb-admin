@@ -123,7 +123,7 @@ export const ItemList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="level"
                     title={translate("item.fields.level")}
                 />
-                <Table.Column
+                {/* <Table.Column
                     dataIndex="sellPriceMin"
                     title={translate("item.fields.sellPriceMin")}
                 />
@@ -147,7 +147,7 @@ export const ItemList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex={["timestamp"]}
                     title={translate("item.fields.timestamp")}
                     render={(value: any) => <DateField value={value} />}
-                />
+                /> */}
                 <Table.Column
                     dataIndex={["saleable"]}
                     title={translate("item.fields.saleable")}

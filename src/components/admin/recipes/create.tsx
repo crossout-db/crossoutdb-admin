@@ -65,7 +65,7 @@ export const RecipeCreate: React.FC<IResourceComponentsProps> = () => {
                 >
                     <Select {...releaseSelectProps} />
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                     label={translate("recipe.fields.craftCost")}
                     name={["craftCost"]}
                     rules={[
@@ -89,7 +89,7 @@ export const RecipeCreate: React.FC<IResourceComponentsProps> = () => {
                     })}
                 >
                     <DatePicker />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item
                     label={translate("recipe.fields.active")}
                     valuePropName="checked"

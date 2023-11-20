@@ -58,10 +58,10 @@ export const RecipeShow: React.FC<IResourceComponentsProps> = () => {
             ) : (
                 <>{releaseData?.data?.name}</>
             )}
-            <Title level={5}>{translate("recipe.fields.craftCost")}</Title>
+            {/* <Title level={5}>{translate("recipe.fields.craftCost")}</Title>
             <NumberField value={record?.craftCost ?? ""} />
             <Title level={5}>{translate("recipe.fields.timestamp")}</Title>
-            <DateField value={record?.timestamp} />
+            <DateField value={record?.timestamp} /> */}
             <Title level={5}>{translate("recipe.fields.active")}</Title>
             <BooleanField value={record?.active} />
             {record?.id && <RecipeItemList parentId={record?.id as number} />}

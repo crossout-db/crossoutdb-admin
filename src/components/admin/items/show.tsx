@@ -83,7 +83,7 @@ export const ItemShow: React.FC<IResourceComponentsProps> = () => {
             {rarityIsLoading ? <>Loading...</> : <>{rarityData?.data?.name}</>}
             <Title level={5}>{translate("item.fields.level")}</Title>
             <NumberField value={record?.level ?? ""} />
-            <Title level={5}>{translate("item.fields.sellPriceMin")}</Title>
+            {/* <Title level={5}>{translate("item.fields.sellPriceMin")}</Title>
             <NumberField value={record?.sellPriceMin ?? ""} />
             <Title level={5}>{translate("item.fields.sellOrders")}</Title>
             <NumberField value={record?.sellOrders ?? ""} />
@@ -94,7 +94,7 @@ export const ItemShow: React.FC<IResourceComponentsProps> = () => {
             <Title level={5}>{translate("item.fields.craftCost")}</Title>
             <NumberField value={record?.craftCost ?? ""} />
             <Title level={5}>{translate("item.fields.timestamp")}</Title>
-            <DateField value={record?.timestamp} />
+            <DateField value={record?.timestamp} /> */}
             <Title level={5}>{translate("item.fields.saleable")}</Title>
             <BooleanField value={record?.saleable} />
             <Title level={5}>{translate("item.fields.active")}</Title>

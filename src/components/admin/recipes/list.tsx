@@ -76,7 +76,7 @@ export const RecipeList: React.FC<IResourceComponentsProps> = () => {
                         )
                     }
                 />
-                <Table.Column
+                {/* <Table.Column
                     dataIndex="craftCost"
                     title={translate("recipe.fields.craftCost")}
                 />
@@ -84,7 +84,7 @@ export const RecipeList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex={["timestamp"]}
                     title={translate("recipe.fields.timestamp")}
                     render={(value: any) => <DateField value={value} />}
-                />
+                /> */}
                 <Table.Column
                     dataIndex={["active"]}
                     title={translate("recipe.fields.active")}

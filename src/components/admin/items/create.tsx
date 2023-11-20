@@ -108,7 +108,7 @@ export const ItemCreate: React.FC<IResourceComponentsProps> = () => {
                 >
                     <InputNumber />
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                     label={translate("item.fields.sellPriceMin")}
                     name={["sellPriceMin"]}
                     rules={[
@@ -176,7 +176,7 @@ export const ItemCreate: React.FC<IResourceComponentsProps> = () => {
                     })}
                 >
                     <DatePicker />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item
                     label={translate("item.fields.saleable")}
                     valuePropName="checked"
