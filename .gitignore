@@ -3,6 +3,7 @@ node_modules
 # next.js build files
 .next
 .vscode
+zenstack
 # environment variables
 .env
 .env.*
