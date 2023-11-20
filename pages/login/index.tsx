@@ -29,7 +29,7 @@ export default function Login() {
           wrapperStyles={{
             fontSize: "22px",
           }}
-          text="refine Project"
+          text="CrossoutDB Admin"
           icon={<AppIcon />}
         />
         <Button
@@ -44,10 +44,10 @@ export default function Login() {
           Powered by
           <img
             style={{ padding: "0 5px" }}
-            alt="Google"
-            src="https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg"
+            alt="Discord"
+            src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0b5061df29d55a92d945_full_logo_blurple_RGB.svg"
+            width="120px"
           />
-          Google
         </Typography.Text>
       </Space>
     </Layout>

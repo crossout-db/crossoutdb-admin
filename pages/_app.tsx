@@ -134,6 +134,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/item/show/:id",
                                 meta: {
                                     parent: "itemParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -144,6 +145,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/itemStats/show/:id",
                                 meta: {
                                     parent: "itemParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -155,6 +157,7 @@ const App = (props: React.PropsWithChildren) => {
                                 meta: {
                                     label: "Market",
                                     parent: "itemParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -165,6 +168,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/category/show/:id",
                                 meta: {
                                     parent: "itemParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -175,6 +179,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/faction/show/:id",
                                 meta: {
                                     parent: "itemParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -185,6 +190,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/rarity/show/:id",
                                 meta: {
                                     parent: "itemParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -195,6 +201,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/type/show/:id",
                                 meta: {
                                     parent: "itemParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -205,6 +212,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/badgeExchange/show/:id",
                                 meta: {
                                     label: "Badge Exchange",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -223,6 +231,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/pack/show/:id",
                                 meta: {
                                     parent: "packParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -233,6 +242,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/packItem/show/:id",
                                 meta: {
                                     parent: "packParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -243,6 +253,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/steamAppPrice/show/:id",
                                 meta: {
                                     parent: "packParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -261,7 +272,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/recipe/show/:id",
                                 meta: {
                                     parent: "recipeParent",
-                                    // canDelete: true,
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -272,7 +283,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/recipeItem/show/:id",
                                 meta: {
                                     parent: "recipeParent",
-                                    // canDelete: true,
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -281,6 +292,9 @@ const App = (props: React.PropsWithChildren) => {
                                 create: "/admin/release/create",
                                 edit: "/admin/release/edit/:id",
                                 show: "/admin/release/show/:id",
+                                meta: {
+                                    canDelete: true,
+                                }
                             },
                             {
                                 name: "synergy",
@@ -298,6 +312,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/synergy/show/:id",
                                 meta: {
                                     parent: "synergyParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -308,6 +323,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/synergyItem/show/:id",
                                 meta: {
                                     parent: "synergyParent",
+                                    canDelete: true,
                                 }
                             },
                             {
@@ -350,7 +366,7 @@ function MyApp({
                 Title={({ collapsed }) => (
                     <ThemedTitleV2
                         collapsed={collapsed}
-                        text="refine Project"
+                        text="CrossoutDB Admin"
                         icon={<AppIcon />}
                     />
                 )}
