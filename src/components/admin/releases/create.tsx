@@ -76,11 +76,6 @@ export const ReleaseCreate: React.FC<IResourceComponentsProps> = () => {
                     label={translate("release.fields.active")}
                     valuePropName="checked"
                     name={["active"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
                 >
                     <Checkbox>Active</Checkbox>
                 </Form.Item>

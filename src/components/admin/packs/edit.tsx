@@ -78,11 +78,6 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
                     label={translate("pack.fields.active")}
                     valuePropName="checked"
                     name={["active"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
                 >
                     <Checkbox>Active</Checkbox>
                 </Form.Item>

@@ -53,11 +53,6 @@ export const BadgeExchangeCreate: React.FC<IResourceComponentsProps> = () => {
                     label={translate("badgeExchange.fields.active")}
                     valuePropName="checked"
                     name={["active"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
                 >
                     <Checkbox>Active</Checkbox>
                 </Form.Item>

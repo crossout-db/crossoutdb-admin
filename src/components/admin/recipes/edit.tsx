@@ -110,11 +110,6 @@ export const RecipeEdit: React.FC<IResourceComponentsProps> = () => {
                     label={translate("recipe.fields.active")}
                     valuePropName="checked"
                     name={["active"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
                 >
                     <Checkbox>Active</Checkbox>
                 </Form.Item>

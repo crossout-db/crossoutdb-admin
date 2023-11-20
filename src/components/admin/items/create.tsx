@@ -181,11 +181,6 @@ export const ItemCreate: React.FC<IResourceComponentsProps> = () => {
                     label={translate("item.fields.saleable")}
                     valuePropName="checked"
                     name={["saleable"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
                 >
                     <Checkbox>Saleable</Checkbox>
                 </Form.Item>
@@ -193,11 +188,6 @@ export const ItemCreate: React.FC<IResourceComponentsProps> = () => {
                     label={translate("item.fields.active")}
                     valuePropName="checked"
                     name={["active"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
                 >
                     <Checkbox>Active</Checkbox>
                 </Form.Item>
