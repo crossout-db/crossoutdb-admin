@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select, Checkbox, DatePicker } from "antd";
+import { Form, Input, Select, Checkbox, DatePicker, InputNumber } from "antd";
 import dayjs from "dayjs";
 
 export const BadgeExchangeEdit: React.FC<IResourceComponentsProps> = () => {
@@ -50,7 +50,7 @@ export const BadgeExchangeEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("badgeExchange.fields.badges")}
@@ -61,7 +61,7 @@ export const BadgeExchangeEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("badgeExchange.fields.active")}

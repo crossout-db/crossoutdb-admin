@@ -166,6 +166,10 @@ export const dataProvider = (
             },
         };
 
+        if (meta?.include) {
+            query.include = meta.include;
+        }
+
         const { headers, method } = meta ?? {};
         const requestMethod = (method as MethodTypes) ?? "get";
 

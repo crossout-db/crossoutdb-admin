@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select, Checkbox } from "antd";
+import { Form, Input, Select, Checkbox, InputNumber } from "antd";
 
 export const PackCreate: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -46,7 +46,7 @@ export const PackCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("pack.fields.releaseId")}

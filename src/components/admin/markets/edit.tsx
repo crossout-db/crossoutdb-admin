@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select, DatePicker } from "antd";
+import { Form, Input, Select, DatePicker, InputNumber } from "antd";
 import dayjs from "dayjs";
 
 export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
@@ -50,7 +50,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("market.fields.sellOrders")}
@@ -61,7 +61,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("market.fields.buyPriceMax")}
@@ -72,7 +72,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("market.fields.buyOrders")}
@@ -83,7 +83,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("market.fields.timestamp")}

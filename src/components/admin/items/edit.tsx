@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select, DatePicker, Checkbox } from "antd";
+import { Form, Input, Select, DatePicker, Checkbox, InputNumber } from "antd";
 import dayjs from "dayjs";
 
 export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
@@ -68,7 +68,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("item.fields.typeId")}
@@ -123,7 +123,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("item.fields.sellPriceMin")}
@@ -134,7 +134,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("item.fields.sellOrders")}
@@ -145,7 +145,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("item.fields.buyPriceMax")}
@@ -156,7 +156,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("item.fields.buyOrders")}
@@ -167,7 +167,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("item.fields.craftCost")}
@@ -178,7 +178,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("item.fields.timestamp")}

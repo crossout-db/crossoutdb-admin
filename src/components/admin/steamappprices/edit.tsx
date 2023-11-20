@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Edit, useForm } from "@refinedev/antd";
-import { Form, Input, DatePicker } from "antd";
+import { Form, Input, DatePicker, InputNumber } from "antd";
 import dayjs from "dayjs";
 
 export const SteamAppPriceEdit: React.FC<IResourceComponentsProps> = () => {
@@ -47,7 +47,7 @@ export const SteamAppPriceEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("steamAppPrice.fields.priceEUR")}
@@ -58,7 +58,7 @@ export const SteamAppPriceEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("steamAppPrice.fields.priceGBP")}
@@ -69,7 +69,7 @@ export const SteamAppPriceEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("steamAppPrice.fields.priceRUB")}
@@ -80,7 +80,7 @@ export const SteamAppPriceEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("steamAppPrice.fields.discount")}
@@ -91,7 +91,7 @@ export const SteamAppPriceEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
             </Form>
         </Edit>

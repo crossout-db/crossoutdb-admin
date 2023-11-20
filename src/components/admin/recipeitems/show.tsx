@@ -23,6 +23,11 @@ export const RecipeItemShow: React.FC<IResourceComponentsProps> = () => {
         queryOptions: {
             enabled: !!record,
         },
+        meta: {
+            include: {
+                item: true,
+            },
+        },
     });
 
     const { data: itemData, isLoading: itemIsLoading } = useOne({
@@ -38,7 +43,7 @@ export const RecipeItemShow: React.FC<IResourceComponentsProps> = () => {
             <Title level={5}>{translate("recipeItem.fields.id")}</Title>
             <NumberField value={record?.id ?? ""} />
             <Title level={5}>{translate("recipeItem.fields.recipeId")}</Title>
-            {recipeIsLoading ? <>Loading...</> : <>{recipeData?.data?.name}</>}
+            {recipeIsLoading ? <>Loading...</> : <>{recipeData?.data?.item?.name}</>}
             <Title level={5}>{translate("recipeItem.fields.itemId")}</Title>
             {itemIsLoading ? <>Loading...</> : <>{itemData?.data?.name}</>}
             <Title level={5}>{translate("recipeItem.fields.quantity")}</Title>

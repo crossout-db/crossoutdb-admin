@@ -119,32 +119,22 @@ const App = (props: React.PropsWithChildren) => {
                         i18nProvider={i18nProvider}
                         resources={[
                             {
-                                name: "badgeExchange",
-                                list: "/admin/badgeExchange",
-                                create: "/admin/badgeExchange/create",
-                                edit: "/admin/badgeExchange/edit/:id",
-                                show: "/admin/badgeExchange/show/:id",
-                            },
-                            {
-                                name: "category",
-                                list: "/admin/category",
-                                create: "/admin/category/create",
-                                edit: "/admin/category/edit/:id",
-                                show: "/admin/category/show/:id",
-                            },
-                            {
-                                name: "faction",
-                                list: "/admin/faction",
-                                create: "/admin/faction/create",
-                                edit: "/admin/faction/edit/:id",
-                                show: "/admin/faction/show/:id",
+                                name: "item",
+                                identifier: "itemParent",
+                                meta: {
+                                    label: "Items",
+                                }
                             },
                             {
                                 name: "item",
+                                identifier: "item",
                                 list: "/admin/item",
                                 create: "/admin/item/create",
                                 edit: "/admin/item/edit/:id",
                                 show: "/admin/item/show/:id",
+                                meta: {
+                                    parent: "itemParent",
+                                }
                             },
                             {
                                 name: "itemStats",
@@ -152,6 +142,9 @@ const App = (props: React.PropsWithChildren) => {
                                 create: "/admin/itemStats/create",
                                 edit: "/admin/itemStats/edit/:id",
                                 show: "/admin/itemStats/show/:id",
+                                meta: {
+                                    parent: "itemParent",
+                                }
                             },
                             {
                                 name: "market",
@@ -159,20 +152,30 @@ const App = (props: React.PropsWithChildren) => {
                                 create: "/admin/market/create",
                                 edit: "/admin/market/edit/:id",
                                 show: "/admin/market/show/:id",
+                                meta: {
+                                    label: "Market",
+                                    parent: "itemParent",
+                                }
                             },
                             {
-                                name: "pack",
-                                list: "/admin/pack",
-                                create: "/admin/pack/create",
-                                edit: "/admin/pack/edit/:id",
-                                show: "/admin/pack/show/:id",
+                                name: "category",
+                                list: "/admin/category",
+                                create: "/admin/category/create",
+                                edit: "/admin/category/edit/:id",
+                                show: "/admin/category/show/:id",
+                                meta: {
+                                    parent: "itemParent",
+                                }
                             },
                             {
-                                name: "packItem",
-                                list: "/admin/packItem",
-                                create: "/admin/packItem/create",
-                                edit: "/admin/packItem/edit/:id",
-                                show: "/admin/packItem/show/:id",
+                                name: "faction",
+                                list: "/admin/faction",
+                                create: "/admin/faction/create",
+                                edit: "/admin/faction/edit/:id",
+                                show: "/admin/faction/show/:id",
+                                meta: {
+                                    parent: "itemParent",
+                                }
                             },
                             {
                                 name: "rarity",
@@ -180,20 +183,97 @@ const App = (props: React.PropsWithChildren) => {
                                 create: "/admin/rarity/create",
                                 edit: "/admin/rarity/edit/:id",
                                 show: "/admin/rarity/show/:id",
+                                meta: {
+                                    parent: "itemParent",
+                                }
+                            },
+                            {
+                                name: "type",
+                                list: "/admin/type",
+                                create: "/admin/type/create",
+                                edit: "/admin/type/edit/:id",
+                                show: "/admin/type/show/:id",
+                                meta: {
+                                    parent: "itemParent",
+                                }
+                            },
+                            {
+                                name: "badgeExchange",
+                                list: "/admin/badgeExchange",
+                                create: "/admin/badgeExchange/create",
+                                edit: "/admin/badgeExchange/edit/:id",
+                                show: "/admin/badgeExchange/show/:id",
+                                meta: {
+                                    label: "Badge Exchange",
+                                }
+                            },
+                            {
+                                name: "pack",
+                                identifier: "packParent",
+                                meta: {
+                                    label: "Packs",
+                                }
+                            },
+                            {
+                                name: "pack",
+                                identifier: "pack",
+                                list: "/admin/pack",
+                                create: "/admin/pack/create",
+                                edit: "/admin/pack/edit/:id",
+                                show: "/admin/pack/show/:id",
+                                meta: {
+                                    parent: "packParent",
+                                }
+                            },
+                            {
+                                name: "packItem",
+                                list: "/admin/packItem",
+                                create: "/admin/packItem/create",
+                                edit: "/admin/packItem/edit/:id",
+                                show: "/admin/packItem/show/:id",
+                                meta: {
+                                    parent: "packParent",
+                                }
+                            },
+                            {
+                                name: "steamAppPrice",
+                                list: "/admin/steamAppPrice",
+                                create: "/admin/steamAppPrice/create",
+                                edit: "/admin/steamAppPrice/edit/:id",
+                                show: "/admin/steamAppPrice/show/:id",
+                                meta: {
+                                    parent: "packParent",
+                                }
                             },
                             {
                                 name: "recipe",
+                                identifier: "recipeParent",
+                                meta: {
+                                    label: "Recipes",
+                                }
+                            },
+                            {
+                                name: "recipe",
+                                identifier: "recipe",
                                 list: "/admin/recipe",
                                 create: "/admin/recipe/create",
                                 edit: "/admin/recipe/edit/:id",
                                 show: "/admin/recipe/show/:id",
+                                meta: {
+                                    parent: "recipeParent",
+                                    // canDelete: true,
+                                }
                             },
                             {
                                 name: "recipeItem",
                                 list: "/admin/recipeItem",
-                                create: "/admin/recipeItem/create",
+                                create: "/admin/recipeItem/:recipeId/create",
                                 edit: "/admin/recipeItem/edit/:id",
                                 show: "/admin/recipeItem/show/:id",
+                                meta: {
+                                    parent: "recipeParent",
+                                    // canDelete: true,
+                                }
                             },
                             {
                                 name: "release",
@@ -203,18 +283,22 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/release/show/:id",
                             },
                             {
-                                name: "steamAppPrice",
-                                list: "/admin/steamAppPrice",
-                                create: "/admin/steamAppPrice/create",
-                                edit: "/admin/steamAppPrice/edit/:id",
-                                show: "/admin/steamAppPrice/show/:id",
+                                name: "synergy",
+                                identifier: "synergyParent",
+                                meta: {
+                                    label: "Synergies",
+                                }
                             },
                             {
                                 name: "synergy",
+                                identifier: "synergy",
                                 list: "/admin/synergy",
                                 create: "/admin/synergy/create",
                                 edit: "/admin/synergy/edit/:id",
                                 show: "/admin/synergy/show/:id",
+                                meta: {
+                                    parent: "synergyParent",
+                                }
                             },
                             {
                                 name: "synergyItem",
@@ -222,13 +306,9 @@ const App = (props: React.PropsWithChildren) => {
                                 create: "/admin/synergyItem/create",
                                 edit: "/admin/synergyItem/edit/:id",
                                 show: "/admin/synergyItem/show/:id",
-                            },
-                            {
-                                name: "type",
-                                list: "/admin/type",
-                                create: "/admin/type/create",
-                                edit: "/admin/type/edit/:id",
-                                show: "/admin/type/show/:id",
+                                meta: {
+                                    parent: "synergyParent",
+                                }
                             },
                             {
                                 name: "user",

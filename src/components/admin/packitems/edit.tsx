@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select } from "antd";
+import { Form, Input, InputNumber, Select } from "antd";
 
 export const PackItemEdit: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -66,7 +66,7 @@ export const PackItemEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
             </Form>
         </Edit>

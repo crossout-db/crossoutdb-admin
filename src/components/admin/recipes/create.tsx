@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select, DatePicker, Checkbox } from "antd";
+import { Form, Input, Select, DatePicker, Checkbox, InputNumber } from "antd";
 import dayjs from "dayjs";
 
 export const RecipeCreate: React.FC<IResourceComponentsProps> = () => {
@@ -52,7 +52,7 @@ export const RecipeCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("recipe.fields.releaseId")}
@@ -74,7 +74,7 @@ export const RecipeCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("recipe.fields.timestamp")}

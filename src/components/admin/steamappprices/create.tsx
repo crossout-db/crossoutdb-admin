@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Create, useForm } from "@refinedev/antd";
-import { Form, Input, DatePicker } from "antd";
+import { Form, Input, DatePicker, InputNumber } from "antd";
 import dayjs from "dayjs";
 
 export const SteamAppPriceCreate: React.FC<IResourceComponentsProps> = () => {
@@ -34,7 +34,7 @@ export const SteamAppPriceCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("steamAppPrice.fields.priceEUR")}
@@ -45,7 +45,7 @@ export const SteamAppPriceCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("steamAppPrice.fields.priceGBP")}
@@ -56,7 +56,7 @@ export const SteamAppPriceCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("steamAppPrice.fields.priceRUB")}
@@ -67,7 +67,7 @@ export const SteamAppPriceCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
                 <Form.Item
                     label={translate("steamAppPrice.fields.discount")}
@@ -78,7 +78,7 @@ export const SteamAppPriceCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
             </Form>
         </Create>

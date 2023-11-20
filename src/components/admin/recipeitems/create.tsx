@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select } from "antd";
+import { Form, Input, InputNumber, Select } from "antd";
+import { useParams } from "next/navigation";
 
 export const RecipeItemCreate: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
+    const { recipeId: recipeIdStr } = useParams();
+    const recipeId = Number(recipeIdStr);
     const { formProps, saveButtonProps, queryResult } = useForm();
 
     const { selectProps: recipeSelectProps } = useSelect({
         resource: "recipe",
-        optionLabel: "name",
+        defaultValue: recipeId,
+        optionLabel: "item.name",
+        meta: {
+            include: {
+                item: true,
+            },
+        },
+    });
+
+    useEffect(() => {
+        if (recipeId) {
+            formProps?.form?.setFieldValue(
+                "recipeId",
+                recipeId,
+            );
+        }
     });
 
     const { selectProps: itemSelectProps } = useSelect({
@@ -29,7 +47,10 @@ export const RecipeItemCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Select {...recipeSelectProps} />
+                    <Select
+                        disabled={!!recipeId}
+                        {...recipeSelectProps}
+                    />
                 </Form.Item>
                 <Form.Item
                     label={translate("recipeItem.fields.itemId")}
@@ -51,7 +72,7 @@ export const RecipeItemCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Input />
+                    <InputNumber />
                 </Form.Item>
             </Form>
         </Create>
