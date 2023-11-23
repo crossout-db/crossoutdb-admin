@@ -1,7 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select, Checkbox, InputNumber } from "antd";
+import { Form, Input, Select, Checkbox } from "antd";
 
 export const PackCreate: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -18,6 +18,28 @@ export const PackCreate: React.FC<IResourceComponentsProps> = () => {
                 <Form.Item
                     label={translate("pack.fields.name")}
                     name={["name"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label={translate("pack.fields.steamKey")}
+                    name={["steamKey"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label={translate("pack.fields.gaijinKey")}
+                    name={["gaijinKey"]}
                     rules={[
                         {
                             required: true,
@@ -46,7 +68,7 @@ export const PackCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <InputNumber />
+                    <Input />
                 </Form.Item>
                 <Form.Item
                     label={translate("pack.fields.releaseId")}
@@ -63,6 +85,11 @@ export const PackCreate: React.FC<IResourceComponentsProps> = () => {
                     label={translate("pack.fields.active")}
                     valuePropName="checked"
                     name={["active"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
                 >
                     <Checkbox>Active</Checkbox>
                 </Form.Item>

@@ -3,10 +3,10 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "~/server/auth";
-import { SteamAppPriceShow } from "@components/admin/steamappprices";
+import { PackPriceList } from "@components/admin/packprices";
 
-export default function SteamAppPricePageShow() {
-  return <SteamAppPriceShow />;
+export default function PackPricePageList() {
+  return <PackPriceList />;
 }
 
 export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
         ...translateProps,
       },
       redirect: {
-        destination: `/login?to=${encodeURIComponent("/steamAppPrice")}`,
+        destination: `/login?to=${encodeURIComponent("/packPrice")}`,
         permanent: false,
       },
     };

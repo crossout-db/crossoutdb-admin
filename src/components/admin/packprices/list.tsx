@@ -11,19 +11,19 @@ import {
     EditButton,
     ShowButton,
     DeleteButton,
-    BooleanField,
+    DateField,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
-export const PackList: React.FC<IResourceComponentsProps> = () => {
+export const PackPriceList: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
     const { tableProps } = useTable({
         syncWithLocation: true,
     });
 
-    const { data: releaseData, isLoading: releaseIsLoading } = useMany({
-        resource: "release",
-        ids: tableProps?.dataSource?.map((item) => item?.releaseId) ?? [],
+    const { data: packData, isLoading: packIsLoading } = useMany({
+        resource: "pack",
+        ids: tableProps?.dataSource?.map((item) => item?.packId) ?? [],
         queryOptions: {
             enabled: !!tableProps?.dataSource,
         },
@@ -34,44 +34,44 @@ export const PackList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
-                    title={translate("pack.fields.id")}
+                    title={translate("packPrice.fields.id")}
                 />
                 <Table.Column
-                    dataIndex="name"
-                    title={translate("pack.fields.name")}
-                />
-                <Table.Column
-                    dataIndex="steamKey"
-                    title={translate("pack.fields.steamKey")}
-                />
-                <Table.Column
-                    dataIndex="gaijinKey"
-                    title={translate("pack.fields.gaijinKey")}
-                />
-                <Table.Column
-                    dataIndex="key"
-                    title={translate("pack.fields.key")}
-                />
-                <Table.Column
-                    dataIndex="coins"
-                    title={translate("pack.fields.coins")}
-                />
-                <Table.Column
-                    dataIndex={["releaseId"]}
-                    title={translate("pack.fields.releaseId")}
+                    dataIndex={["packId"]}
+                    title={translate("packPrice.fields.packId")}
                     render={(value) =>
-                        releaseIsLoading ? (
+                        packIsLoading ? (
                             <>Loading...</>
                         ) : (
-                            releaseData?.data?.find((item) => item.id === value)
+                            packData?.data?.find((item) => item.id === value)
                                 ?.name
                         )
                     }
                 />
                 <Table.Column
-                    dataIndex={["active"]}
-                    title={translate("pack.fields.active")}
-                    render={(value: any) => <BooleanField value={value} />}
+                    dataIndex="source"
+                    title={translate("packPrice.fields.source")}
+                />
+                <Table.Column
+                    dataIndex="key"
+                    title={translate("packPrice.fields.key")}
+                />
+                <Table.Column
+                    dataIndex={["timestamp"]}
+                    title={translate("packPrice.fields.timestamp")}
+                    render={(value: any) => <DateField value={value} />}
+                />
+                <Table.Column
+                    dataIndex="currencyCode"
+                    title={translate("packPrice.fields.currencyCode")}
+                />
+                <Table.Column
+                    dataIndex="price"
+                    title={translate("packPrice.fields.price")}
+                />
+                <Table.Column
+                    dataIndex="discount"
+                    title={translate("packPrice.fields.discount")}
                 />
                 <Table.Column
                     title={translate("table.actions")}

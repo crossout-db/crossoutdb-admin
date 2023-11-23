@@ -1,20 +1,26 @@
 import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
-import { Edit, useForm } from "@refinedev/antd";
-import { Form, Input, DatePicker, InputNumber } from "antd";
+import { Edit, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select, DatePicker } from "antd";
 import dayjs from "dayjs";
 
-export const SteamAppPriceEdit: React.FC<IResourceComponentsProps> = () => {
+export const PackPriceEdit: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
     const { formProps, saveButtonProps, queryResult } = useForm();
 
-    const steamAppPriceData = queryResult?.data?.data;
+    const packPriceData = queryResult?.data?.data;
+
+    const { selectProps: packSelectProps } = useSelect({
+        resource: "pack",
+        defaultValue: packPriceData?.packId,
+        optionLabel: "name",
+    });
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("steamAppPrice.fields.id")}
+                    label={translate("packPrice.fields.id")}
                     name={["id"]}
                     rules={[
                         {
@@ -25,7 +31,40 @@ export const SteamAppPriceEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input readOnly disabled />
                 </Form.Item>
                 <Form.Item
-                    label={translate("steamAppPrice.fields.timestamp")}
+                    label={translate("packPrice.fields.packId")}
+                    name={"packId"}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select {...packSelectProps} />
+                </Form.Item>
+                <Form.Item
+                    label={translate("packPrice.fields.source")}
+                    name={["source"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label={translate("packPrice.fields.key")}
+                    name={["key"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label={translate("packPrice.fields.timestamp")}
                     name={["timestamp"]}
                     rules={[
                         {
@@ -39,51 +78,29 @@ export const SteamAppPriceEdit: React.FC<IResourceComponentsProps> = () => {
                     <DatePicker />
                 </Form.Item>
                 <Form.Item
-                    label={translate("steamAppPrice.fields.priceUSD")}
-                    name={["priceUSD"]}
+                    label={translate("packPrice.fields.currencyCode")}
+                    name={["currencyCode"]}
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <InputNumber />
+                    <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("steamAppPrice.fields.priceEUR")}
-                    name={["priceEUR"]}
+                    label={translate("packPrice.fields.price")}
+                    name={["price"]}
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <InputNumber />
+                    <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("steamAppPrice.fields.priceGBP")}
-                    name={["priceGBP"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <InputNumber />
-                </Form.Item>
-                <Form.Item
-                    label={translate("steamAppPrice.fields.priceRUB")}
-                    name={["priceRUB"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <InputNumber />
-                </Form.Item>
-                <Form.Item
-                    label={translate("steamAppPrice.fields.discount")}
+                    label={translate("packPrice.fields.discount")}
                     name={["discount"]}
                     rules={[
                         {
@@ -91,7 +108,7 @@ export const SteamAppPriceEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <InputNumber />
+                    <Input />
                 </Form.Item>
             </Form>
         </Edit>

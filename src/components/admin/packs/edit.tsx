@@ -1,8 +1,7 @@
 import React from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select, Checkbox, InputNumber } from "antd";
-import { PackItemList } from "../packitems";
+import { Form, Input, Select, Checkbox } from "antd";
 
 export const PackEdit: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -42,6 +41,17 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
+                    label={translate("pack.fields.steamKey")}
+                    name={["steamKey"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
                     label={translate("pack.fields.key")}
                     name={["key"]}
                     rules={[
@@ -61,7 +71,7 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <InputNumber />
+                    <Input />
                 </Form.Item>
                 <Form.Item
                     label={translate("pack.fields.releaseId")}
@@ -78,11 +88,15 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
                     label={translate("pack.fields.active")}
                     valuePropName="checked"
                     name={["active"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
                 >
                     <Checkbox>Active</Checkbox>
                 </Form.Item>
             </Form>
-            {packData?.id && <PackItemList parentId={packData?.id as number} />}
         </Edit>
     );
 };

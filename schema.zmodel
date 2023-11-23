@@ -92,16 +92,18 @@ model Pack {
     id Int @id @default(autoincrement())
     name String
     description String?
-    steamAppId Int
+    steamKey String?
+    gaijinKey String?
     key String?
     coins Int
     release Release? @relation(fields: [releaseId], references: [id])
     releaseId Int @default(1)
     active Boolean @default(true)
     items PackItem[]
-    steamAppPrices SteamAppPrice[]
+    packPrices PackPrice[]
 
-    @@unique([steamAppId])
+    @@unique([steamKey])
+    @@unique([gaijinKey])
 
     // everyone
     @@allow('read', true)
@@ -128,16 +130,22 @@ model PackItem {
     @@allow('create,update,delete', auth().role == "ADMIN" || auth().role == "CONTRIBUTOR")
 }
 
-model SteamAppPrice {
+enum PackPriceSource {
+    STEAM
+    GAIJIN
+}
+
+model PackPrice {
     id Int @id @default(autoincrement())
-    pack Pack @relation(fields: [steamAppId], references: [steamAppId], onDelete: Cascade)
-    steamAppId Int
+    pack Pack @relation(fields: [packId], references: [id], onDelete: Cascade)
+    packId Int
+    source PackPriceSource
+    key String
     timestamp DateTime @default(now())
-    priceUSD Int
-    priceEUR Int
-    priceGBP Int
-    priceRUB Int
-    discount Int
+    currencyCode String
+    price Int
+    priceOriginal Int?
+    discount Int?
 
     // everyone can read
     @@allow('read', true)
@@ -188,7 +196,7 @@ model Type {
     @@allow('create,update,delete', auth().role == "ADMIN")
 }
 
-enum RarityImportEnum {
+enum RarityImportKey {
     BASE
     COMMON
     RARE
@@ -201,7 +209,7 @@ enum RarityImportEnum {
 model Rarity {
     id Int @id @default(autoincrement())
     name String
-    importKey RarityImportEnum
+    importKey RarityImportKey
     primaryColor String
     secondaryColor String
     items Item[]
