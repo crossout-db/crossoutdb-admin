@@ -149,20 +149,12 @@ export const dataProvider = (
         //     };
         // }
 
-        function checkId(id: any) {
-            const idNumber = Number(id);
-            if (isNaN(idNumber)) {
-                return id;
-            } 
-            return idNumber;
-        } 
-
         const query: {
             include?: any;
             where: any;
         } = {
             where: {
-                id: checkId(id),
+                id: formatId(id),
             },
         };
 
@@ -202,7 +194,9 @@ export const dataProvider = (
         const payload = JSON.parse(
             `{"0":{"json":{"data":${JSON.stringify(variables)}}}}`
         );
-        const { data } = await httpClient[requestMethod](url, payload);
+        const { data } = await httpClient[requestMethod](url, payload, {
+            headers,
+        });
 
         return {
             data,
@@ -215,11 +209,14 @@ export const dataProvider = (
         const { headers, method } = meta ?? {};
         const requestMethod = (method as MethodTypesWithBody) ?? "post";
 
-        const payload = JSON.parse(
-            `{"0":{"json":{"where": {"id": ${id}},"data":${JSON.stringify(
-                variables
-            )}}}}`
-        );
+        const query = {
+            where: {
+                id: formatId(id),
+            },
+            data: variables,
+        };
+
+        const payload = JSON.parse(`{"0":{"json":${JSON.stringify(query)}}}`);
         const { data } = await httpClient[requestMethod](url, payload, {
             headers,
         });
@@ -235,7 +232,13 @@ export const dataProvider = (
         const { headers, method } = meta ?? {};
         const requestMethod = (method as MethodTypesWithBody) ?? "post";
 
-        const payload = JSON.parse(`{"0":{"json":{"where": {"id": ${id}}}}}`);
+        const query = {
+            where: {
+                id: formatId(id),
+            },
+        };
+
+        const payload = JSON.parse(`{"0":{"json":${JSON.stringify(query)}}}`);
         const { data } = await httpClient[requestMethod](url, payload, {
             headers,
         });
@@ -336,3 +339,11 @@ export const mapOperator = (operator: CrudOperators): string => {
             return "";
     }
 };
+
+function formatId(id: any) {
+    const idNumber = Number(id);
+    if (isNaN(idNumber)) {
+        return id;
+    } 
+    return idNumber;
+} 
