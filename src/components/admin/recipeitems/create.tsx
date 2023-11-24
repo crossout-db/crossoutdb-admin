@@ -23,10 +23,7 @@ export const RecipeItemCreate: React.FC<IResourceComponentsProps> = () => {
 
     useEffect(() => {
         if (recipeId) {
-            formProps?.form?.setFieldValue(
-                "recipeId",
-                recipeId,
-            );
+            formProps?.form?.setFieldValue("recipeId", recipeId);
         }
     });
 
@@ -47,10 +44,7 @@ export const RecipeItemCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Select
-                        disabled={!!recipeId}
-                        {...recipeSelectProps}
-                    />
+                    <Select disabled={!!recipeId} {...recipeSelectProps} />
                 </Form.Item>
                 <Form.Item
                     label={translate("recipeItem.fields.itemId")}

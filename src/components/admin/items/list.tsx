@@ -12,8 +12,10 @@ import {
     ShowButton,
     DateField,
     BooleanField,
+    FilterDropdown,
+    useSelect,
 } from "@refinedev/antd";
-import { Table, Space } from "antd";
+import { Table, Space, Select } from "antd";
 
 export const ItemList: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -53,12 +55,28 @@ export const ItemList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
+    const { selectProps: itemSelectProps } = useSelect({
+        resource: "item",
+        sorters: [
+            {
+                field: "id",
+                order: "asc",
+            },
+        ],
+    });
+
     return (
         <List>
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
                     title={translate("item.fields.id")}
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                          <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Item" {...itemSelectProps} />
+                        </FilterDropdown>
+                    )}
+
                 />
 
                 <Table.Column

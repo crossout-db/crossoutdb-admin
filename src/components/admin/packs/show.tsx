@@ -13,6 +13,7 @@ import {
     BooleanField,
 } from "@refinedev/antd";
 import { Typography } from "antd";
+import { PackItemList } from "../packitems";
 
 const { Title } = Typography;
 
@@ -51,6 +52,7 @@ export const PackShow: React.FC<IResourceComponentsProps> = () => {
             )}
             <Title level={5}>{translate("pack.fields.active")}</Title>
             <BooleanField value={record?.active} />
+            {record?.id && <PackItemList parentId={record?.id as number} />}
         </Show>
     );
 };

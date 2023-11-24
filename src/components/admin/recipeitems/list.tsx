@@ -11,8 +11,10 @@ import {
     EditButton,
     ShowButton,
     DeleteButton,
+    FilterDropdown,
+    useSelect,
 } from "@refinedev/antd";
-import { Table, Space } from "antd";
+import { Table, Space, Select } from "antd";
 
 interface RecipeItemListProps extends IResourceComponentsProps {
     parentId?: number;
@@ -56,6 +58,16 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({ parentId }) => {
         },
     });
 
+    const { selectProps: itemSelectProps } = useSelect({
+        resource: "item",
+        sorters: [
+            {
+                field: "id",
+                order: "asc",
+            },
+        ],
+    });
+
     return (
         <List
             resource="recipeItem"
@@ -91,6 +103,11 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({ parentId }) => {
                                 ?.name
                         )
                     }
+                    filterDropdown={(props) => (
+                        <FilterDropdown {...props}>
+                          <Select style={{ minWidth: 200 }} mode="multiple" placeholder="Select Item" {...itemSelectProps} />
+                        </FilterDropdown>
+                    )}
                 />
                 <Table.Column
                     dataIndex="quantity"

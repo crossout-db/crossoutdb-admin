@@ -243,18 +243,20 @@ export const ItemStatList: React.FC<ItemStatListProps> = ({ parentId }) => {
                     render={(_, record: BaseRecord) => (
                         <Space>
                             <EditButton
+                                resource="itemStats"
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
                             />
                             <ShowButton
+                                resource="itemStats"
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
                             />
                             {parentId && (
                                 <DeleteButton
-                                    resource="recipeItem"
+                                    resource="itemStats"
                                     hideText
                                     size="small"
                                     recordItemId={record.id}

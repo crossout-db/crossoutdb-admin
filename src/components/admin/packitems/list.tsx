@@ -97,18 +97,20 @@ export const PackItemList: React.FC<PackItemListProps> = ({ parentId }) => {
                     render={(_, record: BaseRecord) => (
                         <Space>
                             <EditButton
+                                resource="packItem"
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
                             />
                             <ShowButton
+                                resource="packItem"
                                 hideText
                                 size="small"
                                 recordItemId={record.id}
                             />
                             {parentId && (
                                 <DeleteButton
-                                    resource="recipeItem"
+                                    resource="packItem"
                                     hideText
                                     size="small"
                                     recordItemId={record.id}

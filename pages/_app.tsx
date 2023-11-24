@@ -140,7 +140,7 @@ const App = (props: React.PropsWithChildren) => {
                             {
                                 name: "itemStats",
                                 list: "/admin/itemStats",
-                                create: "/admin/itemStats/create",
+                                create: "/admin/itemStats/:itemId/create",
                                 edit: "/admin/itemStats/edit/:id",
                                 show: "/admin/itemStats/show/:id",
                                 meta: {
@@ -237,7 +237,7 @@ const App = (props: React.PropsWithChildren) => {
                             {
                                 name: "packItem",
                                 list: "/admin/packItem",
-                                create: "/admin/packItem/create",
+                                create: "/admin/packItem/:packId/create",
                                 edit: "/admin/packItem/edit/:id",
                                 show: "/admin/packItem/show/:id",
                                 meta: {

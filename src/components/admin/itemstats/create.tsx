@@ -1,21 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker } from "antd";
 import dayjs from "dayjs";
+import { useParams } from "next/navigation";
+import { useCurrentUser } from "~/lib/context";
 
 export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
+    const { itemId: itemIdStr } = useParams();
+    const currentUser = useCurrentUser();
+    const itemId = Number(itemIdStr);
     const { formProps, saveButtonProps, queryResult } = useForm();
 
     const { selectProps: itemSelectProps } = useSelect({
         resource: "item",
+        defaultValue: itemId,
         optionLabel: "name",
+    });
+
+    useEffect(() => {
+        if (itemId) {
+            formProps?.form?.setFieldValue("itemId", itemId);
+        }
     });
 
     const { selectProps: userSelectProps } = useSelect({
         resource: "user",
+        defaultValue: currentUser?.id,
         optionLabel: "name",
+    });
+
+    useEffect(() => {
+        if (currentUser?.id) {
+            formProps?.form?.setFieldValue("userId", currentUser?.id);
+        }
     });
 
     const { selectProps: releaseSelectProps } = useSelect({
@@ -35,7 +54,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Select {...itemSelectProps} />
+                    <Select disabled={!!itemId} {...itemSelectProps} />
                 </Form.Item>
                 <Form.Item
                     label={translate("itemStats.fields.userId")}
@@ -46,7 +65,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Select {...userSelectProps} />
+                    <Select disabled={!!currentUser} {...userSelectProps} />
                 </Form.Item>
                 <Form.Item
                     label={translate("itemStats.fields.releaseId")}
@@ -97,7 +116,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
                 <Form.Item
                     label={translate(
-                        "itemStats.fields.increasesReputationPercent",
+                        "itemStats.fields.increasesReputationPercent"
                     )}
                     name={["increasesReputationPercent"]}
                     rules={[
@@ -341,7 +360,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
                 <Form.Item
                     label={translate(
-                        "itemStats.fields.featurePassthroughPercent",
+                        "itemStats.fields.featurePassthroughPercent"
                     )}
                     name={["featurePassthroughPercent"]}
                     rules={[
