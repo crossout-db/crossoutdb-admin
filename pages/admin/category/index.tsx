@@ -16,14 +16,14 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
     "common",
   ]);
 
-  if (!session) {
+  if (session?.user.role !== "ADMIN" && session?.user.role !== "CONTRIBUTOR") {
     console.log("No session found");
     return {
       props: {
         ...translateProps,
       },
       redirect: {
-        destination: `/login?to=${encodeURIComponent("/category")}`,
+        destination: `/403`,
         permanent: false,
       },
     };

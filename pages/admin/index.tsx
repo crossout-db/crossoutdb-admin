@@ -3,10 +3,9 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "~/server/auth";
-import { SynergyItemList } from "@components/admin/synergyitems";
 
-export default function SynergyItemPageList() {
-  return <SynergyItemList />;
+export default function AdminPage() {
+    return <h1>Welcome to CrossoutDB Admin Pages</h1>;
 }
 
 export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
@@ -15,18 +14,6 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
   const translateProps = await serverSideTranslations(context.locale ?? "en", [
     "common",
   ]);
-
-  if (session?.user.role !== "ADMIN" && session?.user.role !== "CONTRIBUTOR") {
-    return {
-      props: {
-        ...translateProps,
-      },
-      redirect: {
-        destination: `/403`,
-        permanent: false,
-      },
-    };
-  }
 
   return {
     props: {

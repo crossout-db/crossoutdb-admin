@@ -1,7 +1,6 @@
-import { NavigateToResource } from "@refinedev/nextjs-router";
+import { useRouter } from "next/router";
 
 export default function Home() {
-  return <NavigateToResource resource="item" />;
+    const router = useRouter();
+    router.replace('/admin');
 }
-
-Home.noLayout = true;

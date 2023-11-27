@@ -24,6 +24,7 @@ import { App as AntdApp } from "antd";
 import { appWithTranslation, useTranslation } from "next-i18next";
 import { AppIcon } from "src/components/app-icon";
 import { trpc } from "~/lib/trpc";
+import nextI18NextConfig from "next-i18next.config.js";
 
 const API_URL = `${getBaseUrl()}/api/trpc`;
 
@@ -37,8 +38,8 @@ type AppPropsWithLayout = AppProps & {
 
 const App = (props: React.PropsWithChildren) => {
     const { t, i18n } = useTranslation();
-
     const { data, status } = useSession();
+    const hideAdminResources = data?.user.role !== "ADMIN";
     const router = useRouter();
     const { to } = router.query;
 
@@ -54,7 +55,7 @@ const App = (props: React.PropsWithChildren) => {
 
     const authProvider: AuthBindings = {
         login: async () => {
-            signIn("google", {
+            signIn("discord", {
                 callbackUrl: to ? to.toString() : "/",
                 redirect: true,
             });
@@ -332,6 +333,9 @@ const App = (props: React.PropsWithChildren) => {
                                 create: "/admin/user/create",
                                 edit: "/admin/user/edit/:id",
                                 show: "/admin/user/show/:id",
+                                meta: {
+                                    hide: hideAdminResources,
+                                },
                             },
                         ]}
                         options={{
