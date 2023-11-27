@@ -40,6 +40,7 @@ const App = (props: React.PropsWithChildren) => {
     const { t, i18n } = useTranslation();
     const { data, status } = useSession();
     const hideAdminResources = data?.user.role !== "ADMIN";
+    const hideContribResources = data?.user.role !== "ADMIN" && data?.user.role !== "CONTRIBUTOR";
     const router = useRouter();
     const { to } = router.query;
 
@@ -124,6 +125,7 @@ const App = (props: React.PropsWithChildren) => {
                                 identifier: "itemParent",
                                 meta: {
                                     label: "Items",
+                                    hide: hideContribResources,
                                 },
                             },
                             {
@@ -214,6 +216,7 @@ const App = (props: React.PropsWithChildren) => {
                                 meta: {
                                     label: "Badge Exchange",
                                     canDelete: true,
+                                    hide: hideContribResources,
                                 },
                             },
                             {
@@ -221,6 +224,7 @@ const App = (props: React.PropsWithChildren) => {
                                 identifier: "packParent",
                                 meta: {
                                     label: "Packs",
+                                    hide: hideContribResources,
                                 },
                             },
                             {
@@ -262,6 +266,7 @@ const App = (props: React.PropsWithChildren) => {
                                 identifier: "recipeParent",
                                 meta: {
                                     label: "Recipes",
+                                    hide: hideContribResources,
                                 },
                             },
                             {
@@ -295,6 +300,7 @@ const App = (props: React.PropsWithChildren) => {
                                 show: "/admin/release/show/:id",
                                 meta: {
                                     canDelete: true,
+                                    hide: hideContribResources,
                                 },
                             },
                             {
@@ -302,6 +308,7 @@ const App = (props: React.PropsWithChildren) => {
                                 identifier: "synergyParent",
                                 meta: {
                                     label: "Synergies",
+                                    hide: hideContribResources,
                                 },
                             },
                             {
