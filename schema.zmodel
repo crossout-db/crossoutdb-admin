@@ -225,7 +225,7 @@ model Item {
     id Int @id @default(autoincrement())
     oldId Int?
     name String
-    marketDef String? @omit
+    marketDef String?
     quantity Int
     type Type @relation(fields: [typeId], references: [id])
     typeId Int
