@@ -57,6 +57,8 @@ export const ItemList: React.FC<IResourceComponentsProps> = () => {
 
     const { selectProps: itemSelectProps } = useSelect({
         resource: "item",
+        optionLabel: "name",
+        optionValue: "id",
         sorters: [
             {
                 field: "id",
@@ -82,6 +84,7 @@ export const ItemList: React.FC<IResourceComponentsProps> = () => {
                 <Table.Column
                     dataIndex="name"
                     title={translate("item.fields.name")}
+                    sorter
                 />
                 <Table.Column
                     dataIndex="quantity"
