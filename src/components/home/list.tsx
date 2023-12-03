@@ -8,7 +8,7 @@ import {
 } from "@refinedev/core";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
-import TableButton from "@components/TableButton";
+import TableButton from "@components/home/TableButton";
 import {
     ChevronDown,
     ChevronLeft,
@@ -17,35 +17,72 @@ import {
     ChevronsLeft,
     ChevronsRight,
     Search,
-} from 'react-feather';
+} from "react-feather";
+import { CategoryFilter, RarityFilter } from "./TableButtons";
+import { trpc } from "~/lib/trpc";
+import Item from "@components/Item";
+import { useTranslation } from "next-i18next";
 
 export const HomeList: React.FC<IResourceComponentsProps> = () => {
+    const { i18n } = useTranslation();
+    const lang = i18n.language;
     const translate = useTranslate();
     const columns = React.useMemo<ColumnDef<any>[]>(
         () => [
             {
+                id: "icon",
+                accessorKey: "id",
+                header: translate("item"),
+                cell: function render({ getValue, table, row }) {
+                    const meta = table.options.meta as {
+                        typeData: GetManyResponse;
+                    };
+                    const type = meta.typeData?.data?.find(
+                        (item) => item.id == row.original.typeId
+                    );
+                    return (
+                        row.original.id ? 
+                        <Item
+                            id={row.original.id}
+                            name={
+                                row.original.translations[0].value ?? row.original.name
+                                }
+                            type={translate(`typeDB.${type?.name}`)}
+                            rarityId={row.original.rarityId}
+                            size="large"
+                        />
+                        : "Loading..."
+                    );
+                },
+            },
+            {
                 id: "id",
                 accessorKey: "id",
-                header: translate("item.fields.id"),
+                header: translate("id"),
             },
             {
                 id: "name",
                 accessorKey: "name",
-                header: translate("item.fields.name"),
+                header: translate("name"),
+                cell: function render({ row }) {
+                    return (
+                        row.original.translations[0].value ?? row.original.name
+                    );
+                }
             },
             {
                 id: "marketDef",
                 accessorKey: "marketDef",
-                header: translate("item.fields.marketDef"),
+                header: translate("marketModel.fields.marketDef"),
             },
             {
                 id: "quantity",
                 accessorKey: "quantity",
-                header: translate("item.fields.quantity"),
+                header: translate("quantity"),
             },
             {
                 id: "typeId",
-                header: translate("item.fields.typeId"),
+                header: translate("type"),
                 accessorKey: "typeId",
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
@@ -56,12 +93,12 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
                         (item) => item.id == getValue<any>()
                     );
 
-                    return type?.name ?? "Loading...";
+                    return translate(`typeDB.${type?.name}`) ?? "Loading...";
                 },
             },
             {
                 id: "categoryId",
-                header: translate("item.fields.categoryId"),
+                header: translate("category"),
                 accessorKey: "categoryId",
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
@@ -72,12 +109,12 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
                         (item) => item.id == getValue<any>()
                     );
 
-                    return category?.name ?? "Loading...";
+                    return translate(`categoryDB.${category?.name}`) ?? "Loading...";
                 },
             },
             {
                 id: "factionId",
-                header: translate("item.fields.factionId"),
+                header: translate("faction"),
                 accessorKey: "factionId",
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
@@ -93,7 +130,7 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             },
             {
                 id: "rarityId",
-                header: translate("item.fields.rarityId"),
+                header: translate("rarity"),
                 accessorKey: "rarityId",
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
@@ -110,37 +147,37 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             {
                 id: "level",
                 accessorKey: "level",
-                header: translate("item.fields.level"),
+                header: translate("itemModel.fields.level"),
             },
             {
                 id: "sellPriceMin",
                 accessorKey: "sellPriceMin",
-                header: translate("item.fields.sellPriceMin"),
+                header: translate("marketModel.fields.sellPriceMin"),
             },
             {
                 id: "sellOrders",
                 accessorKey: "sellOrders",
-                header: translate("item.fields.sellOrders"),
+                header: translate("marketModel.fields.sellOrders"),
             },
             {
                 id: "buyPriceMax",
                 accessorKey: "buyPriceMax",
-                header: translate("item.fields.buyPriceMax"),
+                header: translate("marketModel.fields.buyPriceMax"),
             },
             {
                 id: "buyOrders",
                 accessorKey: "buyOrders",
-                header: translate("item.fields.buyOrders"),
+                header: translate("marketModel.fields.buyOrders"),
             },
             {
                 id: "craftCost",
                 accessorKey: "craftCost",
-                header: translate("item.fields.craftCost"),
+                header: translate("marketModel.fields.craftCost"),
             },
             {
                 id: "timestamp",
                 accessorKey: "timestamp",
-                header: translate("item.fields.timestamp"),
+                header: translate("timestamp"),
                 cell: function render({ getValue }) {
                     return new Date(getValue<any>()).toLocaleString(undefined, {
                         timeZone: "UTC",
@@ -150,7 +187,7 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             {
                 id: "saleable",
                 accessorKey: "saleable",
-                header: translate("item.fields.saleable"),
+                header: translate("saleable"),
                 cell: function render({ getValue }) {
                     return getValue<any>() ? "yes" : "no";
                 },
@@ -158,7 +195,7 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             {
                 id: "active",
                 accessorKey: "active",
-                header: translate("item.fields.active"),
+                header: translate("active"),
                 cell: function render({ getValue }) {
                     return getValue<any>() ? "yes" : "no";
                 },
@@ -218,6 +255,15 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
     } = useTable({
         refineCoreProps: {
             resource: "item",
+            meta: {
+                include: {
+                    translations: {
+                        where: {
+                            languageCode: lang,
+                        },
+                    },
+                },
+            },
         },
         columns,
     });
@@ -254,6 +300,9 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
+    const { data: allCategoryData } = trpc.category.findMany.useQuery({});
+    const { data: allRarityData } = trpc.rarity.findMany.useQuery({});
+
     setOptions((prev) => ({
         ...prev,
         meta: {
@@ -272,11 +321,11 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
         0,
         currentPageIndex -
             2 -
-            Math.max(currentPageIndex - getPageCount() + 3, 0),
+            Math.max(currentPageIndex - getPageCount() + 3, 0)
     );
     const nextBtnMax = Math.min(
         currentPageIndex + 5 - Math.min(currentPageIndex, 2),
-        getPageCount(),
+        getPageCount()
     );
     for (let i = prevBtnMin; i < nextBtnMax; i++) {
         pageButtons.push(
@@ -287,7 +336,7 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
                 Content={(i + 1).toString()}
                 type="text"
                 onClick={() => setPageIndex(i)}
-            />,
+            />
         );
     }
 
@@ -302,7 +351,18 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             >
                 <h1>{translate("item.titles.list")}</h1>
             </div>
-            
+            {allCategoryData && (
+                <CategoryFilter
+                    column={getColumn("categoryId")}
+                    data={allCategoryData}
+                />
+            )}
+            {allRarityData && (
+                <RarityFilter
+                    column={getColumn("rarityId")}
+                    data={allRarityData}
+                />
+            )}
             <div style={{ maxWidth: "100%", overflowY: "scroll" }}>
                 <table>
                     <thead>
@@ -338,14 +398,14 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             </div>
             <div className="space-x-1 float-right">
                 <TableButton
-                    size={'large'}
+                    size={"large"}
                     disabled={!getCanPreviousPage()}
                     Content={ChevronsLeft}
                     type="Icon"
                     onClick={() => setPageIndex(0)}
                 />
                 <TableButton
-                    size={'large'}
+                    size={"large"}
                     disabled={!getCanPreviousPage()}
                     Content={ChevronLeft}
                     type="Icon"
@@ -353,75 +413,20 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
                 />
                 {pageButtons}
                 <TableButton
-                    size={'large'}
+                    size={"large"}
                     disabled={!getCanNextPage()}
                     Content={ChevronRight}
                     type="Icon"
                     onClick={nextPage}
                 />
                 <TableButton
-                    size={'large'}
+                    size={"large"}
                     disabled={!getCanNextPage()}
                     Content={ChevronsRight}
                     type="Icon"
                     onClick={() => setPageIndex(getPageCount() - 1)}
                 />
             </div>
-
-            {/* <div style={{ marginTop: "12px" }}>
-                <button
-                    onClick={() => setPageIndex(0)}
-                    disabled={!getCanPreviousPage()}
-                >
-                    {"<<"}
-                </button>
-                <button
-                    onClick={() => previousPage()}
-                    disabled={!getCanPreviousPage()}
-                >
-                    {"<"}
-                </button>
-                <button onClick={() => nextPage()} disabled={!getCanNextPage()}>
-                    {">"}
-                </button>
-                <button
-                    onClick={() => setPageIndex(getPageCount() - 1)}
-                    disabled={!getCanNextPage()}
-                >
-                    {">>"}
-                </button>
-                <span>
-                    <strong>
-                        {" "}
-                        {getState().pagination.pageIndex + 1} / {getPageCount()}{" "}
-                    </strong>
-                </span>
-                <span>
-                    | {translate("pagination.go")}:{" "}
-                    <input
-                        type="number"
-                        defaultValue={getState().pagination.pageIndex + 1}
-                        onChange={(e) => {
-                            const page = e.target.value
-                                ? Number(e.target.value) - 1
-                                : 0;
-                            setPageIndex(page);
-                        }}
-                    />
-                </span>{" "}
-                <select
-                    value={getState().pagination.pageSize}
-                    onChange={(e) => {
-                        setPageSize(Number(e.target.value));
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map((pageSize) => (
-                        <option key={pageSize} value={pageSize}>
-                            {translate("pagination.show")} {pageSize}
-                        </option>
-                    ))}
-                </select>
-            </div> */}
         </div>
     );
 };

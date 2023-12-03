@@ -1,4 +1,3 @@
-import { isString } from "lodash";
 import Image from "next/image";
 import React from "react";
 import { Icon } from "react-feather";
@@ -53,7 +52,9 @@ const TableButton: React.FC<TableButtonProps> = ({
                     <Image
                         src={Content as string}
                         alt="icon"
-                        className={`w-75 h-75 m-auto ${
+                        height={iconSize}
+                        width={iconSize}
+                        className={`m-auto ${
                             active ? "filter-none" : "filter-grayscale"
                         }`}
                     />
