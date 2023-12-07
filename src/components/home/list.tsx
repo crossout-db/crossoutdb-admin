@@ -22,6 +22,7 @@ import { CategoryFilter, RarityFilter } from "./TableButtons";
 import { trpc } from "~/lib/trpc";
 import Item from "@components/Item";
 import { useTranslation } from "next-i18next";
+import Price from "@components/Price";
 
 export const HomeList: React.FC<IResourceComponentsProps> = () => {
     const { i18n } = useTranslation();
@@ -32,7 +33,7 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             {
                 id: "icon",
                 accessorKey: "id",
-                header: translate("item"),
+                header: translate("fields.item"),
                 cell: function render({ getValue, table, row }) {
                     const meta = table.options.meta as {
                         typeData: GetManyResponse;
@@ -47,7 +48,7 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
                             name={
                                 row.original.translations[0].value ?? row.original.name
                                 }
-                            type={translate(`typeDB.${type?.name}`)}
+                            type={translate(`db.type.${type?.name}`)}
                             rarityId={row.original.rarityId}
                             size="large"
                         />
@@ -58,12 +59,12 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             {
                 id: "id",
                 accessorKey: "id",
-                header: translate("id"),
+                header: translate("fields.id"),
             },
             {
                 id: "name",
                 accessorKey: "name",
-                header: translate("name"),
+                header: translate("fields.name"),
                 cell: function render({ row }) {
                     return (
                         row.original.translations[0].value ?? row.original.name
@@ -73,16 +74,16 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             {
                 id: "marketDef",
                 accessorKey: "marketDef",
-                header: translate("marketModel.fields.marketDef"),
+                header: translate("fields.marketDef"),
             },
             {
                 id: "quantity",
                 accessorKey: "quantity",
-                header: translate("quantity"),
+                header: translate("fields.quantity"),
             },
             {
                 id: "typeId",
-                header: translate("type"),
+                header: translate("fields.type"),
                 accessorKey: "typeId",
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
@@ -93,12 +94,12 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
                         (item) => item.id == getValue<any>()
                     );
 
-                    return translate(`typeDB.${type?.name}`) ?? "Loading...";
+                    return translate(`db.type.${type?.name}`) ?? "Loading...";
                 },
             },
             {
                 id: "categoryId",
-                header: translate("category"),
+                header: translate("fields.category"),
                 accessorKey: "categoryId",
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
@@ -109,12 +110,12 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
                         (item) => item.id == getValue<any>()
                     );
 
-                    return translate(`categoryDB.${category?.name}`) ?? "Loading...";
+                    return translate(`db.category.${category?.name}`) ?? "Loading...";
                 },
             },
             {
                 id: "factionId",
-                header: translate("faction"),
+                header: translate("fields.faction"),
                 accessorKey: "factionId",
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
@@ -130,7 +131,7 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             },
             {
                 id: "rarityId",
-                header: translate("rarity"),
+                header: translate("fields.rarity"),
                 accessorKey: "rarityId",
                 cell: function render({ getValue, table }) {
                     const meta = table.options.meta as {
@@ -147,37 +148,61 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             {
                 id: "level",
                 accessorKey: "level",
-                header: translate("itemModel.fields.level"),
+                header: translate("fields.level"),
             },
             {
                 id: "sellPriceMin",
                 accessorKey: "sellPriceMin",
-                header: translate("marketModel.fields.sellPriceMin"),
+                header: translate("fields.sellPriceMin"),
+                cell: function render({ getValue, table }) {
+                    const val = getValue();
+                    return (val !== undefined && val !== null) ? (
+                      <Price className="justify-end" value={val} />
+                    ) : (
+                      "N/A"
+                    );
+                  },
             },
             {
                 id: "sellOrders",
                 accessorKey: "sellOrders",
-                header: translate("marketModel.fields.sellOrders"),
+                header: translate("fields.sellOrders"),
             },
             {
                 id: "buyPriceMax",
                 accessorKey: "buyPriceMax",
-                header: translate("marketModel.fields.buyPriceMax"),
+                header: translate("fields.buyPriceMax"),
+                cell: function render({ getValue, table }) {
+                    const val = getValue();
+                    return (val !== undefined && val !== null) ? (
+                      <Price className="justify-end" value={val} />
+                    ) : (
+                      "N/A"
+                    );
+                  },
             },
             {
                 id: "buyOrders",
                 accessorKey: "buyOrders",
-                header: translate("marketModel.fields.buyOrders"),
+                header: translate("fields.buyOrders"),
             },
             {
                 id: "craftCost",
                 accessorKey: "craftCost",
-                header: translate("marketModel.fields.craftCost"),
+                header: translate("fields.craftCost"),
+                cell: function render({ getValue, table }) {
+                    const val = getValue();
+                    return (val !== undefined && val !== null) ? (
+                      <Price className="justify-end" value={val} />
+                    ) : (
+                      "N/A"
+                    );
+                  },
             },
             {
                 id: "timestamp",
                 accessorKey: "timestamp",
-                header: translate("timestamp"),
+                header: translate("fields.timeStamp"),
                 cell: function render({ getValue }) {
                     return new Date(getValue<any>()).toLocaleString(undefined, {
                         timeZone: "UTC",
@@ -187,7 +212,7 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             {
                 id: "saleable",
                 accessorKey: "saleable",
-                header: translate("saleable"),
+                header: translate("fields.saleable"),
                 cell: function render({ getValue }) {
                     return getValue<any>() ? "yes" : "no";
                 },
@@ -195,7 +220,7 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
             {
                 id: "active",
                 accessorKey: "active",
-                header: translate("active"),
+                header: translate("fields.active"),
                 cell: function render({ getValue }) {
                     return getValue<any>() ? "yes" : "no";
                 },
@@ -342,15 +367,6 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <div style={{ padding: "16px" }}>
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                }}
-            >
-                <h1>{translate("item.titles.list")}</h1>
-            </div>
             {allCategoryData && (
                 <CategoryFilter
                     column={getColumn("categoryId")}
