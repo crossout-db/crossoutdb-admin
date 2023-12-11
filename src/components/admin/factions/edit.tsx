@@ -13,7 +13,7 @@ export const FactionEdit: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("faction.fields.id")}
+                    label={translate("fields.id")}
                     name={["id"]}
                     rules={[
                         {
@@ -24,7 +24,7 @@ export const FactionEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input readOnly disabled />
                 </Form.Item>
                 <Form.Item
-                    label={translate("faction.fields.name")}
+                    label={translate("fields.name")}
                     name={["name"]}
                     rules={[
                         {

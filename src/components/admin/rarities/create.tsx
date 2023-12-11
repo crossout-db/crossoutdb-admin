@@ -11,7 +11,7 @@ export const RarityCreate: React.FC<IResourceComponentsProps> = () => {
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("rarity.fields.name")}
+                    label={translate("fields.name")}
                     name={["name"]}
                     rules={[
                         {
@@ -22,7 +22,7 @@ export const RarityCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("rarity.fields.importKey")}
+                    label={translate("fields.importKey")}
                     name={["importKey"]}
                     rules={[
                         {
@@ -33,7 +33,7 @@ export const RarityCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("rarity.fields.primaryColor")}
+                    label={translate("fields.primaryColor")}
                     name={["primaryColor"]}
                     rules={[
                         {
@@ -44,7 +44,7 @@ export const RarityCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("rarity.fields.secondaryColor")}
+                    label={translate("fields.secondaryColor")}
                     name={["secondaryColor"]}
                     rules={[
                         {

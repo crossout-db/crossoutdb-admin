@@ -33,23 +33,23 @@ export const PackPriceShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Show isLoading={isLoading}>
-            <Title level={5}>{translate("packPrice.fields.id")}</Title>
+            <Title level={5}>{translate("fields.id")}</Title>
             <NumberField value={record?.id ?? ""} />
-            <Title level={5}>{translate("packPrice.fields.packId")}</Title>
+            <Title level={5}>{translate("fields.pack")}</Title>
             {packIsLoading ? <>Loading...</> : <>{packData?.data?.name}</>}
-            <Title level={5}>{translate("packPrice.fields.source")}</Title>
+            <Title level={5}>{translate("fields.source")}</Title>
             <TextField value={record?.source} />
-            <Title level={5}>{translate("packPrice.fields.key")}</Title>
+            <Title level={5}>{translate("fields.key")}</Title>
             <NumberField value={record?.key ?? ""} />
-            <Title level={5}>{translate("packPrice.fields.timestamp")}</Title>
+            <Title level={5}>{translate("fields.timeStamp")}</Title>
             <DateField value={record?.timestamp} />
             <Title level={5}>
-                {translate("packPrice.fields.currencyCode")}
+                {translate("fields.currencyCode")}
             </Title>
             <TextField value={record?.currencyCode} />
-            <Title level={5}>{translate("packPrice.fields.price")}</Title>
+            <Title level={5}>{translate("fields.price")}</Title>
             <NumberField value={record?.price ?? ""} />
-            <Title level={5}>{translate("packPrice.fields.discount")}</Title>
+            <Title level={5}>{translate("fields.discount")}</Title>
             <NumberField value={record?.discount ?? ""} />
         </Show>
     );

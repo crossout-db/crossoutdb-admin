@@ -13,7 +13,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("user.fields.id")}
+                    label={translate("fields.id")}
                     name={["id"]}
                     rules={[
                         {
@@ -24,7 +24,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input readOnly disabled />
                 </Form.Item>
                 <Form.Item
-                    label={translate("user.fields.name")}
+                    label={translate("fields.name")}
                     name={["name"]}
                     rules={[
                         {
@@ -35,7 +35,7 @@ export const UserEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("user.fields.role")}
+                    label={translate("fields.role")}
                     name={["role"]}
                     rules={[
                         {

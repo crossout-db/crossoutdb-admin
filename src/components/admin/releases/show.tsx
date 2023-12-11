@@ -25,17 +25,17 @@ export const ReleaseShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Show isLoading={isLoading}>
-            <Title level={5}>{translate("release.fields.id")}</Title>
+            <Title level={5}>{translate("fields.id")}</Title>
             <NumberField value={record?.id ?? ""} />
-            <Title level={5}>{translate("release.fields.name")}</Title>
+            <Title level={5}>{translate("fields.name")}</Title>
             <TextField value={record?.name} />
-            <Title level={5}>{translate("release.fields.xoVersion")}</Title>
+            <Title level={5}>{translate("fields.xoVersion")}</Title>
             <TextField value={record?.xoVersion} />
-            <Title level={5}>{translate("release.fields.startDate")}</Title>
+            <Title level={5}>{translate("fields.startDate")}</Title>
             <DateField value={record?.startDate} />
-            <Title level={5}>{translate("release.fields.endDate")}</Title>
+            <Title level={5}>{translate("fields.endDate")}</Title>
             <DateField value={record?.endDate} />
-            <Title level={5}>{translate("release.fields.active")}</Title>
+            <Title level={5}>{translate("fields.active")}</Title>
             <BooleanField value={record?.active} />
         </Show>
     );

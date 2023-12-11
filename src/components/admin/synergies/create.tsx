@@ -11,7 +11,7 @@ export const SynergyCreate: React.FC<IResourceComponentsProps> = () => {
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("synergy.fields.name")}
+                    label={translate("fields.name")}
                     name={["name"]}
                     rules={[
                         {

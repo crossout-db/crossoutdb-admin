@@ -18,15 +18,15 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
-                    title={translate("user.fields.id")}
+                    title={translate("fields.id")}
                 />
                 <Table.Column
                     dataIndex="name"
-                    title={translate("user.fields.name")}
+                    title={translate("fields.name")}
                 />
                 <Table.Column
                     dataIndex="role"
-                    title={translate("user.fields.role")}
+                    title={translate("fields.role")}
                 />
                 <Table.Column
                     title={translate("table.actions")}

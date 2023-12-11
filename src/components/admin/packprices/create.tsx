@@ -17,7 +17,7 @@ export const PackPriceCreate: React.FC<IResourceComponentsProps> = () => {
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("packPrice.fields.packId")}
+                    label={translate("fields.pack")}
                     name={"packId"}
                     rules={[
                         {
@@ -28,7 +28,7 @@ export const PackPriceCreate: React.FC<IResourceComponentsProps> = () => {
                     <Select {...packSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("packPrice.fields.source")}
+                    label={translate("fields.source")}
                     name={["source"]}
                     rules={[
                         {
@@ -39,7 +39,7 @@ export const PackPriceCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("packPrice.fields.key")}
+                    label={translate("fields.key")}
                     name={["key"]}
                     rules={[
                         {
@@ -50,7 +50,7 @@ export const PackPriceCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("packPrice.fields.timestamp")}
+                    label={translate("fields.timeStamp")}
                     name={["timestamp"]}
                     rules={[
                         {
@@ -64,7 +64,7 @@ export const PackPriceCreate: React.FC<IResourceComponentsProps> = () => {
                     <DatePicker />
                 </Form.Item>
                 <Form.Item
-                    label={translate("packPrice.fields.currencyCode")}
+                    label={translate("fields.currencyCode")}
                     name={["currencyCode"]}
                     rules={[
                         {
@@ -75,7 +75,7 @@ export const PackPriceCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("packPrice.fields.price")}
+                    label={translate("fields.price")}
                     name={["price"]}
                     rules={[
                         {
@@ -86,7 +86,7 @@ export const PackPriceCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("packPrice.fields.discount")}
+                    label={translate("fields.discount")}
                     name={["discount"]}
                     rules={[
                         {

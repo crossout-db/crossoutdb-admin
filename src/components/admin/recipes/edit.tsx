@@ -27,7 +27,7 @@ export const RecipeEdit: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("recipe.fields.id")}
+                    label={translate("fields.id")}
                     name={["id"]}
                     rules={[
                         {
@@ -38,7 +38,7 @@ export const RecipeEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input readOnly disabled />
                 </Form.Item>
                 <Form.Item
-                    label={translate("recipe.fields.name")}
+                    label={translate("fields.name")}
                     name={["name"]}
                     rules={[
                         {
@@ -49,7 +49,7 @@ export const RecipeEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("recipe.fields.itemId")}
+                    label={translate("fields.item")}
                     name={"itemId"}
                     rules={[
                         {
@@ -60,7 +60,7 @@ export const RecipeEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...itemSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("recipe.fields.quantity")}
+                    label={translate("fields.quantity")}
                     name={["quantity"]}
                     rules={[
                         {
@@ -71,7 +71,7 @@ export const RecipeEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("recipe.fields.releaseId")}
+                    label={translate("fields.release")}
                     name={"releaseId"}
                     rules={[
                         {
@@ -82,7 +82,7 @@ export const RecipeEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...releaseSelectProps} />
                 </Form.Item>
                 {/* <Form.Item
-                    label={translate("recipe.fields.craftCost")}
+                    label={translate("fields.craftCost")}
                     name={["craftCost"]}
                     rules={[
                         {
@@ -93,7 +93,7 @@ export const RecipeEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("recipe.fields.timestamp")}
+                    label={translate("fields.timeStamp")}
                     name={["timestamp"]}
                     rules={[
                         {
@@ -107,7 +107,7 @@ export const RecipeEdit: React.FC<IResourceComponentsProps> = () => {
                     <DatePicker />
                 </Form.Item> */}
                 <Form.Item
-                    label={translate("recipe.fields.active")}
+                    label={translate("fields.active")}
                     valuePropName="checked"
                     name={["active"]}
                 >

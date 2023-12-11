@@ -18,11 +18,12 @@ export const TypeList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
-                    title={translate("type.fields.id")}
+                    title={translate("fields.id")}
                 />
                 <Table.Column
                     dataIndex="name"
-                    title={translate("type.fields.name")}
+                    title={translate("fields.name")}
+                    render={(value) => translate(`db.type.${value}`)}
                 />
                 <Table.Column
                     title={translate("table.actions")}

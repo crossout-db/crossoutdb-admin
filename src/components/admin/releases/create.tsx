@@ -12,7 +12,7 @@ export const ReleaseCreate: React.FC<IResourceComponentsProps> = () => {
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("release.fields.name")}
+                    label={translate("fields.name")}
                     name={["name"]}
                     rules={[
                         {
@@ -23,7 +23,7 @@ export const ReleaseCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("release.fields.xoVersion")}
+                    label={translate("fields.xoVersion")}
                     name={["xoVersion"]}
                     rules={[
                         {
@@ -34,7 +34,7 @@ export const ReleaseCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("release.fields.url")}
+                    label={translate("fields.url")}
                     name={["url"]}
                     rules={[
                         {
@@ -45,7 +45,7 @@ export const ReleaseCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("release.fields.startDate")}
+                    label={translate("fields.startDate")}
                     name={["startDate"]}
                     rules={[
                         {
@@ -59,7 +59,7 @@ export const ReleaseCreate: React.FC<IResourceComponentsProps> = () => {
                     <DatePicker />
                 </Form.Item>
                 <Form.Item
-                    label={translate("release.fields.endDate")}
+                    label={translate("fields.endDate")}
                     name={["endDate"]}
                     rules={[
                         {
@@ -73,7 +73,7 @@ export const ReleaseCreate: React.FC<IResourceComponentsProps> = () => {
                     <DatePicker />
                 </Form.Item>
                 <Form.Item
-                    label={translate("release.fields.active")}
+                    label={translate("fields.active")}
                     valuePropName="checked"
                     name={["active"]}
                 >

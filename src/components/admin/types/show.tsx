@@ -18,10 +18,10 @@ export const TypeShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Show isLoading={isLoading}>
-            <Title level={5}>{translate("type.fields.id")}</Title>
+            <Title level={5}>{translate("fields.id")}</Title>
             <NumberField value={record?.id ?? ""} />
-            <Title level={5}>{translate("type.fields.name")}</Title>
-            <TextField value={record?.name} />
+            <Title level={5}>{translate("fields.name")}</Title>
+            <TextField value={translate(`db.type.${record?.name}`)} />
         </Show>
     );
 };

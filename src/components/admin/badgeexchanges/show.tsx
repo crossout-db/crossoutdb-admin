@@ -4,6 +4,7 @@ import {
     useShow,
     useTranslate,
     useOne,
+    useGetLocale,
 } from "@refinedev/core";
 import {
     Show,
@@ -17,6 +18,8 @@ import { Typography } from "antd";
 const { Title } = Typography;
 
 export const BadgeExchangeShow: React.FC<IResourceComponentsProps> = () => {
+    const locale = useGetLocale();
+    const lang = locale();
     const translate = useTranslate();
     const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
@@ -29,24 +32,33 @@ export const BadgeExchangeShow: React.FC<IResourceComponentsProps> = () => {
         queryOptions: {
             enabled: !!record,
         },
+        meta: {
+            include: {
+                translations: {
+                    where: {
+                        languageCode: lang,
+                    },
+                },
+            },
+        },
     });
 
     return (
         <Show isLoading={isLoading}>
-            <Title level={5}>{translate("badgeExchange.fields.id")}</Title>
+            <Title level={5}>{translate("fields.id")}</Title>
             <NumberField value={record?.id ?? ""} />
-            <Title level={5}>{translate("badgeExchange.fields.itemId")}</Title>
-            {itemIsLoading ? <>Loading...</> : <>{itemData?.data?.name}</>}
+            <Title level={5}>{translate("fields.item")}</Title>
+            {itemIsLoading ? <>Loading...</> : <>{itemData?.data?.translations[0]?.value ?? itemData?.data?.name}</>}
             <Title level={5}>
-                {translate("badgeExchange.fields.quantity")}
+                {translate("fields.quantity")}
             </Title>
             <NumberField value={record?.quantity ?? ""} />
-            <Title level={5}>{translate("badgeExchange.fields.badges")}</Title>
+            <Title level={5}>{translate("fields.badges")}</Title>
             <NumberField value={record?.badges ?? ""} />
-            <Title level={5}>{translate("badgeExchange.fields.active")}</Title>
+            <Title level={5}>{translate("fields.active")}</Title>
             <BooleanField value={record?.active} />
             <Title level={5}>
-                {translate("badgeExchange.fields.timestamp")}
+                {translate("fields.timeStamp")}
             </Title>
             <DateField value={record?.timestamp} />
         </Show>

@@ -4,6 +4,7 @@ import {
     useShow,
     useTranslate,
     useOne,
+    useGetLocale,
 } from "@refinedev/core";
 import {
     Show,
@@ -19,8 +20,20 @@ import { ItemStatList } from "../itemstats";
 const { Title } = Typography;
 
 export const ItemShow: React.FC<IResourceComponentsProps> = () => {
+    const locale = useGetLocale();
+    const lang = locale();
     const translate = useTranslate();
-    const { queryResult } = useShow();
+    const { queryResult } = useShow({
+        meta: {
+            include: {
+                translations: {
+                    where: {
+                        languageCode: lang,
+                    },
+                },
+            },
+        },
+    });
     const { data, isLoading } = queryResult;
 
     const record = data?.data;
@@ -59,45 +72,45 @@ export const ItemShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Show isLoading={isLoading}>
-            <Title level={5}>{translate("item.fields.id")}</Title>
+            <Title level={5}>{translate("fields.id")}</Title>
             <NumberField value={record?.id ?? ""} />
-            <Title level={5}>{translate("item.fields.name")}</Title>
-            <TextField value={record?.name} />
-            <Title level={5}>{translate("item.fields.quantity")}</Title>
+            <Title level={5}>{translate("fields.name")}</Title>
+            <TextField value={record?.translations[0]?.value ?? record?.name} />
+            <Title level={5}>{translate("fields.quantity")}</Title>
             <NumberField value={record?.quantity ?? ""} />
-            <Title level={5}>{translate("item.fields.typeId")}</Title>
-            {typeIsLoading ? <>Loading...</> : <>{typeData?.data?.name}</>}
-            <Title level={5}>{translate("item.fields.categoryId")}</Title>
+            <Title level={5}>{translate("fields.type")}</Title>
+            {typeIsLoading ? <>Loading...</> : <>{translate(`db.type.${typeData?.data?.name}`)}</>}
+            <Title level={5}>{translate("fields.category")}</Title>
             {categoryIsLoading ? (
                 <>Loading...</>
             ) : (
-                <>{categoryData?.data?.name}</>
+                <>{translate(`db.category.${categoryData?.data?.name}`)}</>
             )}
-            <Title level={5}>{translate("item.fields.factionId")}</Title>
+            <Title level={5}>{translate("fields.faction")}</Title>
             {factionIsLoading ? (
                 <>Loading...</>
             ) : (
                 <>{factionData?.data?.name}</>
             )}
-            <Title level={5}>{translate("item.fields.rarityId")}</Title>
+            <Title level={5}>{translate("fields.rarity")}</Title>
             {rarityIsLoading ? <>Loading...</> : <>{rarityData?.data?.name}</>}
-            <Title level={5}>{translate("item.fields.level")}</Title>
+            <Title level={5}>{translate("fields.level")}</Title>
             <NumberField value={record?.level ?? ""} />
-            {/* <Title level={5}>{translate("item.fields.sellPriceMin")}</Title>
+            {/* <Title level={5}>{translate("fields.sellPriceMin")}</Title>
             <NumberField value={record?.sellPriceMin ?? ""} />
-            <Title level={5}>{translate("item.fields.sellOrders")}</Title>
+            <Title level={5}>{translate("fields.sellOrders")}</Title>
             <NumberField value={record?.sellOrders ?? ""} />
-            <Title level={5}>{translate("item.fields.buyPriceMax")}</Title>
+            <Title level={5}>{translate("fields.buyPriceMax")}</Title>
             <NumberField value={record?.buyPriceMax ?? ""} />
-            <Title level={5}>{translate("item.fields.buyOrders")}</Title>
+            <Title level={5}>{translate("fields.buyOrders")}</Title>
             <NumberField value={record?.buyOrders ?? ""} />
-            <Title level={5}>{translate("item.fields.craftCost")}</Title>
+            <Title level={5}>{translate("fields.craftCost")}</Title>
             <NumberField value={record?.craftCost ?? ""} />
-            <Title level={5}>{translate("item.fields.timestamp")}</Title>
+            <Title level={5}>{translate("fields.timeStamp")}</Title>
             <DateField value={record?.timestamp} /> */}
-            <Title level={5}>{translate("item.fields.saleable")}</Title>
+            <Title level={5}>{translate("fields.saleable")}</Title>
             <BooleanField value={record?.saleable} />
-            <Title level={5}>{translate("item.fields.active")}</Title>
+            <Title level={5}>{translate("fields.active")}</Title>
             <BooleanField value={record?.active} />
             {record?.id && <ItemStatList parentId={record?.id as number} />}
         </Show>

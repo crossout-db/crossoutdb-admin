@@ -36,7 +36,7 @@ export const RecipeItemCreate: React.FC<IResourceComponentsProps> = () => {
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("recipeItem.fields.recipeId")}
+                    label={translate("fields.recipe")}
                     name={"recipeId"}
                     rules={[
                         {
@@ -47,7 +47,7 @@ export const RecipeItemCreate: React.FC<IResourceComponentsProps> = () => {
                     <Select disabled={!!recipeId} {...recipeSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("recipeItem.fields.itemId")}
+                    label={translate("fields.item")}
                     name={"itemId"}
                     rules={[
                         {
@@ -58,7 +58,7 @@ export const RecipeItemCreate: React.FC<IResourceComponentsProps> = () => {
                     <Select {...itemSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("recipeItem.fields.quantity")}
+                    label={translate("fields.quantity")}
                     name={["quantity"]}
                     rules={[
                         {

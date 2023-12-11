@@ -34,31 +34,31 @@ export const PackList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
-                    title={translate("pack.fields.id")}
+                    title={translate("fields.id")}
                 />
                 <Table.Column
                     dataIndex="name"
-                    title={translate("pack.fields.name")}
+                    title={translate("fields.name")}
                 />
                 <Table.Column
                     dataIndex="steamKey"
-                    title={translate("pack.fields.steamKey")}
+                    title={translate("fields.steamKey")}
                 />
                 <Table.Column
                     dataIndex="gaijinKey"
-                    title={translate("pack.fields.gaijinKey")}
+                    title={translate("fields.gaijinKey")}
                 />
                 <Table.Column
                     dataIndex="key"
-                    title={translate("pack.fields.key")}
+                    title={translate("fields.key")}
                 />
                 <Table.Column
                     dataIndex="coins"
-                    title={translate("pack.fields.coins")}
+                    title={translate("fields.coins")}
                 />
                 <Table.Column
                     dataIndex={["releaseId"]}
-                    title={translate("pack.fields.releaseId")}
+                    title={translate("fields.release")}
                     render={(value) =>
                         releaseIsLoading ? (
                             <>Loading...</>
@@ -70,7 +70,7 @@ export const PackList: React.FC<IResourceComponentsProps> = () => {
                 />
                 <Table.Column
                     dataIndex={["active"]}
-                    title={translate("pack.fields.active")}
+                    title={translate("fields.active")}
                     render={(value: any) => <BooleanField value={value} />}
                 />
                 <Table.Column

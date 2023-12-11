@@ -18,15 +18,15 @@ export const RarityShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Show isLoading={isLoading}>
-            <Title level={5}>{translate("rarity.fields.id")}</Title>
+            <Title level={5}>{translate("fields.id")}</Title>
             <NumberField value={record?.id ?? ""} />
-            <Title level={5}>{translate("rarity.fields.name")}</Title>
+            <Title level={5}>{translate("fields.name")}</Title>
             <TextField value={record?.name} />
-            <Title level={5}>{translate("rarity.fields.importKey")}</Title>
+            <Title level={5}>{translate("fields.importKey")}</Title>
             <TextField value={record?.importKey} />
-            <Title level={5}>{translate("rarity.fields.primaryColor")}</Title>
+            <Title level={5}>{translate("fields.primaryColor")}</Title>
             <TextField value={record?.primaryColor} />
-            <Title level={5}>{translate("rarity.fields.secondaryColor")}</Title>
+            <Title level={5}>{translate("fields.secondaryColor")}</Title>
             <TextField value={record?.secondaryColor} />
         </Show>
     );

@@ -34,23 +34,23 @@ export const PackShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Show isLoading={isLoading}>
-            <Title level={5}>{translate("pack.fields.id")}</Title>
+            <Title level={5}>{translate("fields.id")}</Title>
             <NumberField value={record?.id ?? ""} />
-            <Title level={5}>{translate("pack.fields.name")}</Title>
+            <Title level={5}>{translate("fields.name")}</Title>
             <TextField value={record?.name} />
-            <Title level={5}>{translate("pack.fields.steamKey")}</Title>
+            <Title level={5}>{translate("fields.steamKey")}</Title>
             <NumberField value={record?.steamKey ?? ""} />
-            <Title level={5}>{translate("pack.fields.key")}</Title>
+            <Title level={5}>{translate("fields.key")}</Title>
             <TextField value={record?.key} />
-            <Title level={5}>{translate("pack.fields.coins")}</Title>
+            <Title level={5}>{translate("fields.coins")}</Title>
             <NumberField value={record?.coins ?? ""} />
-            <Title level={5}>{translate("pack.fields.releaseId")}</Title>
+            <Title level={5}>{translate("fields.release")}</Title>
             {releaseIsLoading ? (
                 <>Loading...</>
             ) : (
                 <>{releaseData?.data?.name}</>
             )}
-            <Title level={5}>{translate("pack.fields.active")}</Title>
+            <Title level={5}>{translate("fields.active")}</Title>
             <BooleanField value={record?.active} />
             {record?.id && <PackItemList parentId={record?.id as number} />}
         </Show>

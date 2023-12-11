@@ -27,34 +27,34 @@ export const ReleaseList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
-                    title={translate("release.fields.id")}
+                    title={translate("fields.id")}
                 />
                 <Table.Column
                     dataIndex="name"
-                    title={translate("release.fields.name")}
+                    title={translate("fields.name")}
                 />
                 <Table.Column
                     dataIndex="xoVersion"
-                    title={translate("release.fields.xoVersion")}
+                    title={translate("fields.xoVersion")}
                 />
                 <Table.Column
                     dataIndex={["url"]}
-                    title={translate("release.fields.url")}
+                    title={translate("fields.url")}
                     render={(value: any) => <UrlField value={value} />}
                 />
                 <Table.Column
                     dataIndex={["startDate"]}
-                    title={translate("release.fields.startDate")}
+                    title={translate("fields.startDate")}
                     render={(value: any) => <DateField value={value} />}
                 />
                 <Table.Column
                     dataIndex={["endDate"]}
-                    title={translate("release.fields.endDate")}
+                    title={translate("fields.endDate")}
                     render={(value: any) => <DateField value={value} />}
                 />
                 <Table.Column
                     dataIndex={["active"]}
-                    title={translate("release.fields.active")}
+                    title={translate("fields.active")}
                     render={(value: any) => <BooleanField value={value} />}
                 />
                 <Table.Column

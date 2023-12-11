@@ -20,7 +20,7 @@ export const BadgeExchangeEdit: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("badgeExchange.fields.id")}
+                    label={translate("fields.id")}
                     name={["id"]}
                     rules={[
                         {
@@ -31,7 +31,7 @@ export const BadgeExchangeEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input readOnly disabled />
                 </Form.Item>
                 <Form.Item
-                    label={translate("badgeExchange.fields.itemId")}
+                    label={translate("fields.item")}
                     name={"itemId"}
                     rules={[
                         {
@@ -42,7 +42,7 @@ export const BadgeExchangeEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...itemSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("badgeExchange.fields.quantity")}
+                    label={translate("fields.quantity")}
                     name={["quantity"]}
                     rules={[
                         {
@@ -53,7 +53,7 @@ export const BadgeExchangeEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("badgeExchange.fields.badges")}
+                    label={translate("fields.badges")}
                     name={["badges"]}
                     rules={[
                         {
@@ -64,14 +64,14 @@ export const BadgeExchangeEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("badgeExchange.fields.active")}
+                    label={translate("fields.active")}
                     valuePropName="checked"
                     name={["active"]}
                 >
                     <Checkbox>Active</Checkbox>
                 </Form.Item>
                 <Form.Item
-                    label={translate("badgeExchange.fields.timestamp")}
+                    label={translate("fields.timeStamp")}
                     name={["timestamp"]}
                     rules={[
                         {

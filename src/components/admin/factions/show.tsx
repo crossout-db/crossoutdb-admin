@@ -18,9 +18,9 @@ export const FactionShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Show isLoading={isLoading}>
-            <Title level={5}>{translate("faction.fields.id")}</Title>
+            <Title level={5}>{translate("fields.id")}</Title>
             <NumberField value={record?.id ?? ""} />
-            <Title level={5}>{translate("faction.fields.name")}</Title>
+            <Title level={5}>{translate("fields.name")}</Title>
             <TextField value={record?.name} />
         </Show>
     );

@@ -17,7 +17,7 @@ export const BadgeExchangeCreate: React.FC<IResourceComponentsProps> = () => {
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("badgeExchange.fields.itemId")}
+                    label={translate("fields.item")}
                     name={"itemId"}
                     rules={[
                         {
@@ -28,7 +28,7 @@ export const BadgeExchangeCreate: React.FC<IResourceComponentsProps> = () => {
                     <Select {...itemSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("badgeExchange.fields.quantity")}
+                    label={translate("fields.quantity")}
                     name={["quantity"]}
                     rules={[
                         {
@@ -39,7 +39,7 @@ export const BadgeExchangeCreate: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("badgeExchange.fields.badges")}
+                    label={translate("fields.badges")}
                     name={["badges"]}
                     rules={[
                         {
@@ -50,14 +50,14 @@ export const BadgeExchangeCreate: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("badgeExchange.fields.active")}
+                    label={translate("fields.active")}
                     valuePropName="checked"
                     name={["active"]}
                 >
                     <Checkbox>Active</Checkbox>
                 </Form.Item>
                 <Form.Item
-                    label={translate("badgeExchange.fields.timestamp")}
+                    label={translate("fields.timeStamp")}
                     name={["timestamp"]}
                     rules={[
                         {

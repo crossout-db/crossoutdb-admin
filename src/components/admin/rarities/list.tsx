@@ -18,23 +18,23 @@ export const RarityList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
-                    title={translate("rarity.fields.id")}
+                    title={translate("fields.id")}
                 />
                 <Table.Column
                     dataIndex="name"
-                    title={translate("rarity.fields.name")}
+                    title={translate("fields.name")}
                 />
                 <Table.Column
                     dataIndex="importKey"
-                    title={translate("rarity.fields.importKey")}
+                    title={translate("fields.importKey")}
                 />
                 <Table.Column
                     dataIndex="primaryColor"
-                    title={translate("rarity.fields.primaryColor")}
+                    title={translate("fields.primaryColor")}
                 />
                 <Table.Column
                     dataIndex="secondaryColor"
-                    title={translate("rarity.fields.secondaryColor")}
+                    title={translate("fields.secondaryColor")}
                 />
                 <Table.Column
                     title={translate("table.actions")}

@@ -31,7 +31,7 @@ export const PackItemCreate: React.FC<IResourceComponentsProps> = () => {
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("packItem.fields.packId")}
+                    label={translate("fields.pack")}
                     name={"packId"}
                     rules={[
                         {
@@ -42,7 +42,7 @@ export const PackItemCreate: React.FC<IResourceComponentsProps> = () => {
                     <Select disabled={!!packId} {...packSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("packItem.fields.itemId")}
+                    label={translate("fields.item")}
                     name={"itemId"}
                     rules={[
                         {
@@ -53,7 +53,7 @@ export const PackItemCreate: React.FC<IResourceComponentsProps> = () => {
                     <Select {...itemSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("packItem.fields.quantity")}
+                    label={translate("fields.quantity")}
                     name={["quantity"]}
                     rules={[
                         {

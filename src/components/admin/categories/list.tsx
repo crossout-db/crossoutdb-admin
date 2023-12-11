@@ -18,11 +18,12 @@ export const CategoryList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
-                    title={translate("category.fields.id")}
+                    title={translate("fields.id")}
                 />
                 <Table.Column
                     dataIndex="name"
-                    title={translate("category.fields.name")}
+                    title={translate("fields.name")}
+                    render={(value) => translate(`db.category.${value}`)}
                 />
                 <Table.Column
                     title={translate("table.actions")}

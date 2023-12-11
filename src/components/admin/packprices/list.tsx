@@ -34,11 +34,11 @@ export const PackPriceList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
-                    title={translate("packPrice.fields.id")}
+                    title={translate("fields.id")}
                 />
                 <Table.Column
                     dataIndex={["packId"]}
-                    title={translate("packPrice.fields.packId")}
+                    title={translate("fields.pack")}
                     render={(value) =>
                         packIsLoading ? (
                             <>Loading...</>
@@ -50,28 +50,28 @@ export const PackPriceList: React.FC<IResourceComponentsProps> = () => {
                 />
                 <Table.Column
                     dataIndex="source"
-                    title={translate("packPrice.fields.source")}
+                    title={translate("fields.source")}
                 />
                 <Table.Column
                     dataIndex="key"
-                    title={translate("packPrice.fields.key")}
+                    title={translate("fields.key")}
                 />
                 <Table.Column
                     dataIndex={["timestamp"]}
-                    title={translate("packPrice.fields.timestamp")}
+                    title={translate("fields.timeStamp")}
                     render={(value: any) => <DateField value={value} />}
                 />
                 <Table.Column
                     dataIndex="currencyCode"
-                    title={translate("packPrice.fields.currencyCode")}
+                    title={translate("fields.currencyCode")}
                 />
                 <Table.Column
                     dataIndex="price"
-                    title={translate("packPrice.fields.price")}
+                    title={translate("fields.price")}
                 />
                 <Table.Column
                     dataIndex="discount"
-                    title={translate("packPrice.fields.discount")}
+                    title={translate("fields.discount")}
                 />
                 <Table.Column
                     title={translate("table.actions")}

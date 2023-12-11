@@ -19,7 +19,7 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("pack.fields.id")}
+                    label={translate("fields.id")}
                     name={["id"]}
                     rules={[
                         {
@@ -30,7 +30,7 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input readOnly disabled />
                 </Form.Item>
                 <Form.Item
-                    label={translate("pack.fields.name")}
+                    label={translate("fields.name")}
                     name={["name"]}
                     rules={[
                         {
@@ -41,7 +41,7 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("pack.fields.steamKey")}
+                    label={translate("fields.steamKey")}
                     name={["steamKey"]}
                     rules={[
                         {
@@ -52,7 +52,7 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("pack.fields.key")}
+                    label={translate("fields.key")}
                     name={["key"]}
                     rules={[
                         {
@@ -63,7 +63,7 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("pack.fields.coins")}
+                    label={translate("fields.coins")}
                     name={["coins"]}
                     rules={[
                         {
@@ -74,7 +74,7 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("pack.fields.releaseId")}
+                    label={translate("fields.release")}
                     name={"releaseId"}
                     rules={[
                         {
@@ -85,7 +85,7 @@ export const PackEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...releaseSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("pack.fields.active")}
+                    label={translate("fields.active")}
                     valuePropName="checked"
                     name={["active"]}
                     rules={[

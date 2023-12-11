@@ -25,7 +25,7 @@ export const PackItemEdit: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("packItem.fields.id")}
+                    label={translate("fields.id")}
                     name={["id"]}
                     rules={[
                         {
@@ -36,7 +36,7 @@ export const PackItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input readOnly disabled />
                 </Form.Item>
                 <Form.Item
-                    label={translate("packItem.fields.packId")}
+                    label={translate("fields.pack")}
                     name={"packId"}
                     rules={[
                         {
@@ -47,7 +47,7 @@ export const PackItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...packSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("packItem.fields.itemId")}
+                    label={translate("fields.item")}
                     name={"itemId"}
                     rules={[
                         {
@@ -58,7 +58,7 @@ export const PackItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...itemSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("packItem.fields.quantity")}
+                    label={translate("fields.quantity")}
                     name={["quantity"]}
                     rules={[
                         {

@@ -18,11 +18,11 @@ export const FactionList: React.FC<IResourceComponentsProps> = () => {
             <Table {...tableProps} rowKey="id">
                 <Table.Column
                     dataIndex="id"
-                    title={translate("faction.fields.id")}
+                    title={translate("fields.id")}
                 />
                 <Table.Column
                     dataIndex="name"
-                    title={translate("faction.fields.name")}
+                    title={translate("fields.name")}
                 />
                 <Table.Column
                     title={translate("table.actions")}

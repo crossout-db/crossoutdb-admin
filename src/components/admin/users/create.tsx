@@ -11,7 +11,7 @@ export const UserCreate: React.FC<IResourceComponentsProps> = () => {
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("user.fields.name")}
+                    label={translate("fields.name")}
                     name={["name"]}
                     rules={[
                         {
@@ -22,7 +22,7 @@ export const UserCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("user.fields.role")}
+                    label={translate("fields.role")}
                     name={["role"]}
                     rules={[
                         {

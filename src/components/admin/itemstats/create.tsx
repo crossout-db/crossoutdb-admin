@@ -46,7 +46,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("itemStats.fields.itemId")}
+                    label={translate("fields.item")}
                     name={"itemId"}
                     rules={[
                         {
@@ -57,7 +57,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Select disabled={!!itemId} {...itemSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.userId")}
+                    label={translate("fields.user")}
                     name={"userId"}
                     rules={[
                         {
@@ -68,7 +68,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Select disabled={!!currentUser} {...userSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.releaseId")}
+                    label={translate("fields.release")}
                     name={"releaseId"}
                     rules={[
                         {
@@ -79,7 +79,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Select {...releaseSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.timestamp")}
+                    label={translate("fields.timeStamp")}
                     name={["timestamp"]}
                     rules={[
                         {
@@ -93,7 +93,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <DatePicker />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.description")}
+                    label={translate("fields.description")}
                     name="description"
                     rules={[
                         {
@@ -104,7 +104,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input.TextArea rows={5} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.increasesDurability")}
+                    label={translate("fields.increasesDurability")}
                     name={["increasesDurability"]}
                     rules={[
                         {
@@ -116,7 +116,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
                 <Form.Item
                     label={translate(
-                        "itemStats.fields.increasesReputationPercent"
+                        "fields.increasesReputationPercent"
                     )}
                     name={["increasesReputationPercent"]}
                     rules={[
@@ -128,7 +128,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.topSpeed")}
+                    label={translate("fields.topSpeed")}
                     name={["topSpeed"]}
                     rules={[
                         {
@@ -139,7 +139,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.ps")}
+                    label={translate("fields.ps")}
                     name={["ps"]}
                     rules={[
                         {
@@ -150,7 +150,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.damage")}
+                    label={translate("fields.damage")}
                     name={["damage"]}
                     rules={[
                         {
@@ -161,7 +161,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.fireRate")}
+                    label={translate("fields.fireRate")}
                     name={["fireRate"]}
                     rules={[
                         {
@@ -172,7 +172,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.range")}
+                    label={translate("fields.range")}
                     name={["range"]}
                     rules={[
                         {
@@ -183,7 +183,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.accuracy")}
+                    label={translate("fields.accuracy")}
                     name={["accuracy"]}
                     rules={[
                         {
@@ -194,7 +194,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.timeToOverheating")}
+                    label={translate("fields.timeToOverheat")}
                     name={["timeToOverheating"]}
                     rules={[
                         {
@@ -205,7 +205,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.maxAmmo")}
+                    label={translate("fields.maxAmmo")}
                     name={["maxAmmo"]}
                     rules={[
                         {
@@ -216,7 +216,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.blastPower")}
+                    label={translate("fields.blastPower")}
                     name={["blastPower"]}
                     rules={[
                         {
@@ -227,7 +227,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.addsEnergy")}
+                    label={translate("fields.addsEnergy")}
                     name={["addsEnergy"]}
                     rules={[
                         {
@@ -238,7 +238,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.tonnage")}
+                    label={translate("fields.tonnage")}
                     name={["tonnage"]}
                     rules={[
                         {
@@ -249,7 +249,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.massLimit")}
+                    label={translate("fields.massLimit")}
                     name={["massLimit"]}
                     rules={[
                         {
@@ -260,7 +260,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.maxCabinSpeed")}
+                    label={translate("fields.maxCabinSpeed")}
                     name={["maxCabinSpeed"]}
                     rules={[
                         {
@@ -271,7 +271,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.maxChassisSpeed")}
+                    label={translate("fields.maxChassisSpeed")}
                     name={["maxChassisSpeed"]}
                     rules={[
                         {
@@ -282,7 +282,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.power")}
+                    label={translate("fields.power")}
                     name={["power"]}
                     rules={[
                         {
@@ -293,7 +293,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.cabinPower")}
+                    label={translate("fields.cabinPower")}
                     name={["cabinPower"]}
                     rules={[
                         {
@@ -304,7 +304,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.fuelReserves")}
+                    label={translate("fields.fuelReserves")}
                     name={["fuelReserves"]}
                     rules={[
                         {
@@ -315,7 +315,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.featureBulletPercent")}
+                    label={translate("fields.featureBulletPercent")}
                     name={["featureBulletPercent"]}
                     rules={[
                         {
@@ -326,7 +326,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.featureMeleePercent")}
+                    label={translate("fields.featureMeleePercent")}
                     name={["featureMeleePercent"]}
                     rules={[
                         {
@@ -337,7 +337,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.featureBlastPercent")}
+                    label={translate("fields.featureBlastPercent")}
                     name={["featureBlastPercent"]}
                     rules={[
                         {
@@ -348,7 +348,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.featureFirePercent")}
+                    label={translate("fields.featureFirePercent")}
                     name={["featureFirePercent"]}
                     rules={[
                         {
@@ -360,7 +360,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
                 <Form.Item
                     label={translate(
-                        "itemStats.fields.featurePassthroughPercent"
+                        "fields.featurePassthroughPercent"
                     )}
                     name={["featurePassthroughPercent"]}
                     rules={[
@@ -372,7 +372,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.durability")}
+                    label={translate("fields.durability")}
                     name={["durability"]}
                     rules={[
                         {
@@ -383,7 +383,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.energyDrain")}
+                    label={translate("fields.energyDrain")}
                     name={["energyDrain"]}
                     rules={[
                         {
@@ -394,7 +394,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.mass")}
+                    label={translate("fields.mass")}
                     name={["mass"]}
                     rules={[
                         {
@@ -405,7 +405,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("itemStats.fields.perks")}
+                    label={translate("fields.perks")}
                     name={["perks"]}
                     rules={[
                         {

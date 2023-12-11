@@ -4,6 +4,7 @@ import {
     useShow,
     useTranslate,
     useOne,
+    useGetLocale,
 } from "@refinedev/core";
 import {
     Show,
@@ -18,6 +19,8 @@ import { Typography } from "antd";
 const { Title } = Typography;
 
 export const ItemStatShow: React.FC<IResourceComponentsProps> = () => {
+    const locale = useGetLocale();
+    const lang = locale();
     const translate = useTranslate();
     const { queryResult } = useShow();
     const { data, isLoading } = queryResult;
@@ -29,6 +32,15 @@ export const ItemStatShow: React.FC<IResourceComponentsProps> = () => {
         id: record?.itemId || "",
         queryOptions: {
             enabled: !!record,
+        },
+        meta: {
+            include: {
+                translations: {
+                    where: {
+                        languageCode: lang,
+                    },
+                },
+            },
         },
     });
 
@@ -50,99 +62,99 @@ export const ItemStatShow: React.FC<IResourceComponentsProps> = () => {
 
     return (
         <Show isLoading={isLoading}>
-            <Title level={5}>{translate("itemStats.fields.id")}</Title>
+            <Title level={5}>{translate("fields.id")}</Title>
             <NumberField value={record?.id ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.itemId")}</Title>
-            {itemIsLoading ? <>Loading...</> : <>{itemData?.data?.name}</>}
-            <Title level={5}>{translate("itemStats.fields.userId")}</Title>
+            <Title level={5}>{translate("fields.item")}</Title>
+            {itemIsLoading ? <>Loading...</> : <>{itemData?.data?.translations[0]?.value ?? itemData?.data?.name}</>}
+            <Title level={5}>{translate("fields.user")}</Title>
             {userIsLoading ? <>Loading...</> : <>{userData?.data?.name}</>}
-            <Title level={5}>{translate("itemStats.fields.releaseId")}</Title>
+            <Title level={5}>{translate("fields.release")}</Title>
             {releaseIsLoading ? (
                 <>Loading...</>
             ) : (
                 <>{releaseData?.data?.name}</>
             )}
-            <Title level={5}>{translate("itemStats.fields.timestamp")}</Title>
+            <Title level={5}>{translate("fields.timeStamp")}</Title>
             <DateField value={record?.timestamp} />
-            <Title level={5}>{translate("itemStats.fields.description")}</Title>
+            <Title level={5}>{translate("fields.description")}</Title>
             <MarkdownField value={record?.description} />
             <Title level={5}>
-                {translate("itemStats.fields.increasesDurability")}
+                {translate("fields.increasesDurability")}
             </Title>
             <NumberField value={record?.increasesDurability ?? ""} />
             <Title level={5}>
-                {translate("itemStats.fields.increasesReputationPercent")}
+                {translate("fields.increasesReputationPercent")}
             </Title>
             <NumberField value={record?.increasesReputationPercent ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.topSpeed")}</Title>
+            <Title level={5}>{translate("fields.topSpeed")}</Title>
             <NumberField value={record?.topSpeed ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.ps")}</Title>
+            <Title level={5}>{translate("fields.ps")}</Title>
             <NumberField value={record?.ps ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.damage")}</Title>
+            <Title level={5}>{translate("fields.damage")}</Title>
             <NumberField value={record?.damage ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.fireRate")}</Title>
+            <Title level={5}>{translate("fields.fireRate")}</Title>
             <NumberField value={record?.fireRate ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.range")}</Title>
+            <Title level={5}>{translate("fields.range")}</Title>
             <NumberField value={record?.range ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.accuracy")}</Title>
+            <Title level={5}>{translate("fields.accuracy")}</Title>
             <NumberField value={record?.accuracy ?? ""} />
             <Title level={5}>
-                {translate("itemStats.fields.timeToOverheating")}
+                {translate("fields.timeToOverheat")}
             </Title>
             <NumberField value={record?.timeToOverheating ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.maxAmmo")}</Title>
+            <Title level={5}>{translate("fields.maxAmmo")}</Title>
             <NumberField value={record?.maxAmmo ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.blastPower")}</Title>
+            <Title level={5}>{translate("fields.blastPower")}</Title>
             <NumberField value={record?.blastPower ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.addsEnergy")}</Title>
+            <Title level={5}>{translate("fields.addsEnergy")}</Title>
             <NumberField value={record?.addsEnergy ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.tonnage")}</Title>
+            <Title level={5}>{translate("fields.tonnage")}</Title>
             <NumberField value={record?.tonnage ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.massLimit")}</Title>
+            <Title level={5}>{translate("fields.massLimit")}</Title>
             <NumberField value={record?.massLimit ?? ""} />
             <Title level={5}>
-                {translate("itemStats.fields.maxCabinSpeed")}
+                {translate("fields.maxCabinSpeed")}
             </Title>
             <NumberField value={record?.maxCabinSpeed ?? ""} />
             <Title level={5}>
-                {translate("itemStats.fields.maxChassisSpeed")}
+                {translate("fields.maxChassisSpeed")}
             </Title>
             <NumberField value={record?.maxChassisSpeed ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.power")}</Title>
+            <Title level={5}>{translate("fields.power")}</Title>
             <NumberField value={record?.power ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.cabinPower")}</Title>
+            <Title level={5}>{translate("fields.cabinPower")}</Title>
             <NumberField value={record?.cabinPower ?? ""} />
             <Title level={5}>
-                {translate("itemStats.fields.fuelReserves")}
+                {translate("fields.fuelReserves")}
             </Title>
             <NumberField value={record?.fuelReserves ?? ""} />
             <Title level={5}>
-                {translate("itemStats.fields.featureBulletPercent")}
+                {translate("fields.featureBulletPercent")}
             </Title>
             <NumberField value={record?.featureBulletPercent ?? ""} />
             <Title level={5}>
-                {translate("itemStats.fields.featureMeleePercent")}
+                {translate("fields.featureMeleePercent")}
             </Title>
             <NumberField value={record?.featureMeleePercent ?? ""} />
             <Title level={5}>
-                {translate("itemStats.fields.featureBlastPercent")}
+                {translate("fields.featureBlastPercent")}
             </Title>
             <NumberField value={record?.featureBlastPercent ?? ""} />
             <Title level={5}>
-                {translate("itemStats.fields.featureFirePercent")}
+                {translate("fields.featureFirePercent")}
             </Title>
             <NumberField value={record?.featureFirePercent ?? ""} />
             <Title level={5}>
-                {translate("itemStats.fields.featurePassthroughPercent")}
+                {translate("fields.featurePassthroughPercent")}
             </Title>
             <NumberField value={record?.featurePassthroughPercent ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.durability")}</Title>
+            <Title level={5}>{translate("fields.durability")}</Title>
             <NumberField value={record?.durability ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.energyDrain")}</Title>
+            <Title level={5}>{translate("fields.energyDrain")}</Title>
             <NumberField value={record?.energyDrain ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.mass")}</Title>
+            <Title level={5}>{translate("fields.mass")}</Title>
             <NumberField value={record?.mass ?? ""} />
-            <Title level={5}>{translate("itemStats.fields.perks")}</Title>
+            <Title level={5}>{translate("fields.perks")}</Title>
             <TextField value={record?.perks} />
         </Show>
     );

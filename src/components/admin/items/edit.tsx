@@ -1,5 +1,5 @@
 import React from "react";
-import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
+import { IResourceComponentsProps, useGetLocale, useTranslate } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker, Checkbox, InputNumber } from "antd";
 import dayjs from "dayjs";
@@ -39,7 +39,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("item.fields.id")}
+                    label={translate("fields.id")}
                     name={["id"]}
                     rules={[
                         {
@@ -50,7 +50,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input readOnly disabled />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.name")}
+                    label={translate("fields.name")}
                     name={["name"]}
                     rules={[
                         {
@@ -61,7 +61,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.quantity")}
+                    label={translate("fields.quantity")}
                     name={["quantity"]}
                     rules={[
                         {
@@ -72,7 +72,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.typeId")}
+                    label={translate("fields.type")}
                     name={"typeId"}
                     rules={[
                         {
@@ -83,7 +83,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...typeSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.categoryId")}
+                    label={translate("fields.category")}
                     name={"categoryId"}
                     rules={[
                         {
@@ -94,7 +94,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...categorySelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.factionId")}
+                    label={translate("fields.faction")}
                     name={"factionId"}
                     rules={[
                         {
@@ -105,7 +105,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...factionSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.rarityId")}
+                    label={translate("fields.rarity")}
                     name={"rarityId"}
                     rules={[
                         {
@@ -116,7 +116,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...raritySelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.level")}
+                    label={translate("fields.level")}
                     name={["level"]}
                     rules={[
                         {
@@ -127,7 +127,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 {/* <Form.Item
-                    label={translate("item.fields.sellPriceMin")}
+                    label={translate("fields.sellPriceMin")}
                     name={["sellPriceMin"]}
                     rules={[
                         {
@@ -138,7 +138,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.sellOrders")}
+                    label={translate("fields.sellOrders")}
                     name={["sellOrders"]}
                     rules={[
                         {
@@ -149,7 +149,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.buyPriceMax")}
+                    label={translate("fields.buyPriceMax")}
                     name={["buyPriceMax"]}
                     rules={[
                         {
@@ -160,7 +160,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.buyOrders")}
+                    label={translate("fields.buyOrders")}
                     name={["buyOrders"]}
                     rules={[
                         {
@@ -171,7 +171,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.craftCost")}
+                    label={translate("fields.craftCost")}
                     name={["craftCost"]}
                     rules={[
                         {
@@ -182,7 +182,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.timestamp")}
+                    label={translate("fields.timeStamp")}
                     name={["timestamp"]}
                     rules={[
                         {
@@ -196,14 +196,14 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <DatePicker />
                 </Form.Item> */}
                 <Form.Item
-                    label={translate("item.fields.saleable")}
+                    label={translate("fields.saleable")}
                     valuePropName="checked"
                     name={["saleable"]}
                 >
                     <Checkbox>Saleable</Checkbox>
                 </Form.Item>
                 <Form.Item
-                    label={translate("item.fields.active")}
+                    label={translate("fields.active")}
                     valuePropName="checked"
                     name={["active"]}
                 >

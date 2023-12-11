@@ -20,7 +20,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
         <Edit saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
                 <Form.Item
-                    label={translate("market.fields.id")}
+                    label={translate("fields.id")}
                     name={["id"]}
                     rules={[
                         {
@@ -31,7 +31,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
                     <Input readOnly disabled />
                 </Form.Item>
                 <Form.Item
-                    label={translate("market.fields.itemId")}
+                    label={translate("fields.item")}
                     name={"itemId"}
                     rules={[
                         {
@@ -42,7 +42,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
                     <Select {...itemSelectProps} />
                 </Form.Item>
                 <Form.Item
-                    label={translate("market.fields.sellPriceMin")}
+                    label={translate("fields.sellPriceMin")}
                     name={["sellPriceMin"]}
                     rules={[
                         {
@@ -53,7 +53,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("market.fields.sellOrders")}
+                    label={translate("fields.sellOrders")}
                     name={["sellOrders"]}
                     rules={[
                         {
@@ -64,7 +64,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("market.fields.buyPriceMax")}
+                    label={translate("fields.buyPriceMax")}
                     name={["buyPriceMax"]}
                     rules={[
                         {
@@ -75,7 +75,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("market.fields.buyOrders")}
+                    label={translate("fields.buyOrders")}
                     name={["buyOrders"]}
                     rules={[
                         {
@@ -86,7 +86,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
                     <InputNumber />
                 </Form.Item>
                 <Form.Item
-                    label={translate("market.fields.timestamp")}
+                    label={translate("fields.timeStamp")}
                     name={["timestamp"]}
                     rules={[
                         {
