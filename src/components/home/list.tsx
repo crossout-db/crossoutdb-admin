@@ -67,16 +67,16 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
           return row.original.translations[0]?.value ?? row.original.name;
         },
       },
-      {
-        id: "marketDef",
-        accessorKey: "marketDef",
-        header: translate("fields.marketDef"),
-      },
-      {
-        id: "quantity",
-        accessorKey: "quantity",
-        header: translate("fields.quantity"),
-      },
+    //   {
+    //     id: "marketDef",
+    //     accessorKey: "marketDef",
+    //     header: translate("fields.marketDef"),
+    //   },
+    //   {
+    //     id: "quantity",
+    //     accessorKey: "quantity",
+    //     header: translate("fields.quantity"),
+    //   },
       {
         id: "typeId",
         header: translate("fields.type"),
@@ -141,11 +141,11 @@ export const HomeList: React.FC<IResourceComponentsProps> = () => {
           return rarity?.name ?? "Loading...";
         },
       },
-      {
-        id: "level",
-        accessorKey: "level",
-        header: translate("fields.level"),
-      },
+    //   {
+    //     id: "level",
+    //     accessorKey: "level",
+    //     header: translate("fields.level"),
+    //   },
       {
         id: "sellPriceMin",
         accessorKey: "sellPriceMin",
