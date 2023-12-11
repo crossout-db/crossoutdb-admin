@@ -17,11 +17,21 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "name",
     });
 
+    const typeSelectOptions = typeSelectProps.options?.map((option) => ({
+        label: translate(`db.type.${option.label}`),
+        value: option.value,
+    }));
+
     const { selectProps: categorySelectProps } = useSelect({
         resource: "category",
         defaultValue: itemData?.categoryId,
         optionLabel: "name",
     });
+
+    const categorySelectOptions = categorySelectProps.options?.map((option) => ({
+        label: translate(`db.category.${option.label}`),
+        value: option.value,
+    }));
 
     const { selectProps: factionSelectProps } = useSelect({
         resource: "faction",
@@ -80,7 +90,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Select {...typeSelectProps} />
+                    <Select options={typeSelectOptions} />
                 </Form.Item>
                 <Form.Item
                     label={translate("fields.category")}
@@ -91,7 +101,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Select {...categorySelectProps} />
+                    <Select options={categorySelectOptions} />
                 </Form.Item>
                 <Form.Item
                     label={translate("fields.faction")}

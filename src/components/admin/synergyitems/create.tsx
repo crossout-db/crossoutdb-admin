@@ -1,9 +1,12 @@
 import React from "react";
-import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
+import { IResourceComponentsProps, useGetLocale, useTranslate } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
+import { ItemIncludeTranslation } from "pages/_app";
 
 export const SynergyItemCreate: React.FC<IResourceComponentsProps> = () => {
+    const locale = useGetLocale();
+    const lang = locale();
     const translate = useTranslate();
     const { formProps, saveButtonProps, queryResult } = useForm();
 
@@ -12,10 +15,24 @@ export const SynergyItemCreate: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "name",
     });
 
-    const { selectProps: itemSelectProps } = useSelect({
+    const { selectProps: itemSelectProps, queryResult: itemQueryResults } = useSelect({
         resource: "item",
         optionLabel: "name",
+        meta: {
+            include: {
+                translations: {
+                    where: {
+                        languageCode: lang,
+                    },
+                },
+            },
+        },
     });
+
+    const itemSelectOptions = itemQueryResults.data?.data.map((item) => ({
+        label: (item as ItemIncludeTranslation).translations[0]?.value ?? item.name,
+        value: (item as ItemIncludeTranslation).id,
+    }));
 
     return (
         <Create saveButtonProps={saveButtonProps}>
@@ -40,7 +57,7 @@ export const SynergyItemCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Select {...itemSelectProps} />
+                    <Select options={itemSelectOptions} />
                 </Form.Item>
             </Form>
         </Create>

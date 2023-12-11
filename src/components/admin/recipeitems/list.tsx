@@ -101,10 +101,10 @@ export const RecipeItemList: React.FC<RecipeItemListProps> = ({ parentId }) => {
           dataIndex={["recipeId"]}
           title={translate("fields.recipe")}
           render={(value) => {
-            const item = recipeData?.data.find(
-              (item) => item.id === value
-            )?.item;
-            return item?.translations[0]?.value ?? item?.name ?? "Loading...";
+            const recipe = recipeData?.data.find(
+              (recipe) => recipe.id === value
+            );
+            return `${recipe?.id} \\ ${recipe?.name} \\ ${recipe?.item.translations[0]?.value ?? recipe?.item?.name}` ?? "Loading...";
           }}
         />
         <Table.Column

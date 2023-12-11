@@ -63,7 +63,7 @@ export const RecipeItemShow: React.FC<IResourceComponentsProps> = () => {
       <Title level={5}>{translate("fields.id")}</Title>
       <NumberField value={record?.id ?? ""} />
       <Title level={5}>{translate("fields.recipe")}</Title>
-      {recipeIsLoading ? <>Loading...</> : <>{recipeData?.data?.item?.translations[0]?.value ?? recipeData?.data?.item?.name}</>}
+      {recipeIsLoading ? <>Loading...</> : <>{`${recipeData?.data?.id} \\ ${recipeData?.data?.name} \\ ${recipeData?.data?.item?.translations[0]?.value ?? recipeData?.data?.item?.name}`}</>}
       <Title level={5}>{translate("fields.item")}</Title>
       {itemIsLoading ? <>Loading...</> : <>{itemData?.data?.translations[0]?.value ?? itemData?.data?.name}</>}
       <Title level={5}>{translate("fields.quantity")}</Title>

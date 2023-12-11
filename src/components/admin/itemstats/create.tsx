@@ -1,23 +1,41 @@
 import React, { useEffect } from "react";
-import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
+import { IResourceComponentsProps, useGetLocale, useTranslate } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker } from "antd";
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
 import { useCurrentUser } from "~/lib/context";
+import { ItemIncludeTranslation } from "pages/_app";
 
 export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
+    const locale = useGetLocale();
+    const lang = locale();
     const translate = useTranslate();
     const { itemId: itemIdStr } = useParams();
     const currentUser = useCurrentUser();
     const itemId = Number(itemIdStr);
     const { formProps, saveButtonProps, queryResult } = useForm();
 
-    const { selectProps: itemSelectProps } = useSelect({
+    const { selectProps: itemSelectProps, queryResult: itemQueryResults } = useSelect({
         resource: "item",
         defaultValue: itemId,
         optionLabel: "name",
+        meta: {
+            include: {
+                translations: {
+                    where: {
+                        languageCode: lang,
+                    },
+                },
+            },
+        },
     });
+
+    const itemSelectOptions = itemQueryResults.data?.data.map((item) => ({
+        label: (item as ItemIncludeTranslation).translations[0]?.value ?? item.name,
+        value: (item as ItemIncludeTranslation).id,
+    }));
+
 
     useEffect(() => {
         if (itemId) {
@@ -54,7 +72,7 @@ export const ItemStatCreate: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Select disabled={!!itemId} {...itemSelectProps} />
+                    <Select disabled={!!itemId} options={itemSelectOptions} />
                 </Form.Item>
                 <Form.Item
                     label={translate("fields.user")}

@@ -1,20 +1,37 @@
 import React from "react";
-import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
+import { IResourceComponentsProps, useGetLocale, useTranslate } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker, InputNumber } from "antd";
 import dayjs from "dayjs";
+import { ItemIncludeTranslation } from "pages/_app";
 
 export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
+    const locale = useGetLocale();
+    const lang = locale();
     const translate = useTranslate();
     const { formProps, saveButtonProps, queryResult } = useForm();
 
     const marketData = queryResult?.data?.data;
 
-    const { selectProps: itemSelectProps } = useSelect({
+    const { selectProps: itemSelectProps, queryResult: itemQueryResults } = useSelect({
         resource: "item",
         defaultValue: marketData?.itemId,
         optionLabel: "name",
+        meta: {
+            include: {
+                translations: {
+                    where: {
+                        languageCode: lang,
+                    },
+                },
+            },
+        },
     });
+
+    const itemSelectOptions = itemQueryResults.data?.data.map((item) => ({
+        label: (item as ItemIncludeTranslation).translations[0]?.value ?? item.name,
+        value: (item as ItemIncludeTranslation).id,
+    }));
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -39,7 +56,7 @@ export const MarketEdit: React.FC<IResourceComponentsProps> = () => {
                         },
                     ]}
                 >
-                    <Select {...itemSelectProps} />
+                    <Select options={itemSelectOptions} />
                 </Form.Item>
                 <Form.Item
                     label={translate("fields.sellPriceMin")}
