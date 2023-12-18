@@ -1,10 +1,13 @@
-import { Column } from "@tanstack/react-table";
+import { type Category, type Rarity } from "@prisma/client";
+import { type Column } from "@tanstack/react-table";
+import { uniq } from "lodash";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
-import TableButton from "./TableButton";
-import { uniq } from "lodash";
-import { Category, Rarity } from "@prisma/client";
+
 import rarityStyles from "~/lib/rarityStyles";
+
+import TableButton from "./TableButton";
+
 
 export const CategoryFilter = ({
     column,
@@ -30,7 +33,7 @@ export const CategoryFilter = ({
             setCategories(newCategories);
             column.setFilterValue(newCategories);
         } else {
-            let newCategories = uniq([...categories, category]);
+            const newCategories = uniq([...categories, category]);
             setCategories(newCategories);
             column.setFilterValue(newCategories);
         }
@@ -67,7 +70,7 @@ export const CategoryFilter = ({
     ];
     return (
         <div className="inline-flex flex-col space-y-0.5">
-            <span className="text-white">{t("category")}</span>
+            <span className="text-white">{t("fields.category")}</span>
             <div className="inline">
                 <div className="inline space-x-1">{buttons}</div>
             </div>
@@ -119,7 +122,7 @@ export const RarityFilter = ({
 
     return (
         <div className="inline-flex flex-col space-y-0.5">
-            <span className="text-white">{t("rarity")}</span>
+            <span className="text-white">{t("fields.rarity")}</span>
             <div className="inline">
                 <div className="inline space-x-1">{buttons}</div>
             </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { Icon } from "react-feather";
+import { type Icon } from "react-feather";
 
 interface TableButtonProps {
     Content: string | Icon;

@@ -3,12 +3,10 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "~/server/auth";
-import { ItemCreate } from "@components/admin/items";
-import { db } from "@server/db";
-import { Prisma } from "@prisma/client";
+import { TranslationEdit } from "@components/admin/translations";
 
-export default function ItemPageCreate({ maxItemId }: { maxItemId: number }) {
-  return <ItemCreate maxItemId={maxItemId} />;
+export default function TranslationPageEdit() {
+  return <TranslationEdit />;
 }
 
 export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
@@ -30,16 +28,8 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
     };
   }
 
-  console.log("maxItemId");
-  const query = await db.$queryRaw(
-    Prisma.sql`SELECT MAX(id) FROM public."Item";`
-  );
-  const maxItemId = (query as { max: number }[])[0].max + 1;
-  console.log("maxItemId:" + maxItemId);
-
   return {
     props: {
-      maxItemId,
       ...translateProps,
     },
   };

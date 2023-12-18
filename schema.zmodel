@@ -13,11 +13,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-// plugin hooks {
-//     provider = '@zenstackhq/swr'
-//     output = "zenstack/generated/swr/hooks"
-// }
-
 plugin trpc {
     provider = '@zenstackhq/trpc'
     output = 'zenstack/generated/trpc'
@@ -225,7 +220,7 @@ model Item {
     id Int @id @default(autoincrement())
     oldId Int?
     name String
-    marketDef String?
+    marketDef String? @allow('all', auth().role == "ADMIN", true)
     quantity Int
     type Type @relation(fields: [typeId], references: [id])
     typeId Int
@@ -350,7 +345,7 @@ model Market {
     id Int @id @default(autoincrement())
     item Item @relation(fields: [itemId], references: [id])
     itemId Int
-    marketDef String @omit
+    marketDef String @allow('all', auth().role == "ADMIN", true)
     sellPriceMin Int
     sellOrders Int
     buyPriceMax Int
@@ -440,9 +435,9 @@ model User {
     id String @id @default(cuid())
     name String?
     role UserRole @default(USER)
-    email String? @unique @omit
-    emailVerified DateTime? @omit
-    image String? @omit
+    email String? @unique @allow('all', auth().role == "ADMIN", true)
+    emailVerified DateTime? @allow('all', auth().role == "ADMIN", true)
+    image String? @allow('all', auth().role == "ADMIN", true)
     accounts Account[]
     sessions Session[]
     itemStats ItemStats[]

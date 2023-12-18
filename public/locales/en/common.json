@@ -1,5 +1,27 @@
 {
     "pages": {
+        "navbar": {
+            "packs": "Packs",
+            "tools": {
+                "title": "Tools",
+                "badgeExchange": "Badge Exchange"
+            },
+            "info": "Info",
+            "language": "Language",
+            "user": {
+                "signIn": "Sign In",
+                "signOut": "Sign Out",
+                "profile": "Profile",
+                "settings": "Settings",
+                "adminPage": "Admin Page"
+            }
+        },
+        "admin": {
+            "title": "Admin Page",
+            "users": "Users",
+            "items": "Items",
+            "recipes": "Recipes"
+        },
         "login": {
             "title": "Sign in to your account",
             "signin": "Sign in",
@@ -102,6 +124,11 @@
         "importProgress": "Importing: {{processed}}/{{total}}"
     },
     "loading": "Loading",
+    "welcome": "Welcome",
+    "home": "Home",
+    "updated": "Updated",
+    "notFound": "Not found",
+    "search": "Search",
     "tags": {
         "clone": "Clone"
     },
@@ -142,7 +169,7 @@
         "timeStamp": "Time Stamp",
         "key": "Key",
         "value": "Value",
-        "code": "Code",
+        "languageCode": "Language Code",
         "active": "Active",
         "saleable": "Saleable",
         "release": "Release",

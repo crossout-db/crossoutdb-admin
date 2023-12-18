@@ -1,7 +1,9 @@
-import React from 'react';
-import rarityStyles from '~/lib/rarityStyles';
 import Link from 'next/link';
-import ImageFallback from './ImageFallback';
+import React from 'react';
+
+import ImageFallback from '@components/ImageFallback';
+import rarityStyles from '~/lib/rarityStyles';
+
 
 interface ItemProps {
     id: number;

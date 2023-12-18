@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IResourceComponentsProps, useGetLocale, useTranslate } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker, InputNumber } from "antd";
@@ -30,6 +30,15 @@ export const MarketCreate: React.FC<IResourceComponentsProps> = () => {
         value: (item as ItemIncludeTranslation).id,
     }));
 
+    const selectedItemId = formProps?.form?.getFieldValue("itemId");
+
+    useEffect(() => {
+        if (selectedItemId) {
+            // @ts-ignore
+            formProps?.form?.setFieldValue("marketDef", itemQueryResults.data?.data.find((item) => item.id === selectedItemId)?.marketDef);
+        }
+    });
+
     return (
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
@@ -43,6 +52,17 @@ export const MarketCreate: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Select options={itemSelectOptions} />
+                </Form.Item>
+                <Form.Item
+                    label={translate("fields.marketDef")}
+                    name={["marketDef"]}
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Input />
                 </Form.Item>
                 <Form.Item
                     label={translate("fields.sellPriceMin")}

@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import coin from '~/../public/icons/coin.png';
+
+import coin from 'public/icons/coin.png';
 
 interface CoinProps {
     size: 'small' | 'medium' | 'large';

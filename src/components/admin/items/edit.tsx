@@ -4,6 +4,7 @@ import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker, Checkbox, InputNumber } from "antd";
 import dayjs from "dayjs";
 import { ItemStatList } from "../itemstats";
+import { TranslationList } from "../translations";
 
 export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -58,6 +59,17 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     ]}
                 >
                     <Input readOnly disabled />
+                </Form.Item>
+                <Form.Item
+                    label={translate("fields.marketDef")}
+                    name={["marketDef"]}
+                    rules={[
+                        {
+                            required: false,
+                        },
+                    ]}
+                >
+                    <Input />
                 </Form.Item>
                 <Form.Item
                     label={translate("fields.name")}
@@ -220,6 +232,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                     <Checkbox>Active</Checkbox>
                 </Form.Item>
             </Form>
+            {itemData?.id && <TranslationList parentId={itemData?.name} />}
             {itemData?.id && <ItemStatList parentId={itemData?.id as number} />}
         </Edit>
     );

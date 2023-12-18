@@ -357,6 +357,13 @@ const App = (props: React.PropsWithChildren) => {
                 },
               },
               {
+                name: "translation",
+                list: "/admin/translation",
+                create: "/admin/translation/:key/create",
+                edit: "/admin/translation/edit/:id",
+                show: "/admin/translation/show/:id",
+              },
+              {
                 name: "user",
                 list: "/admin/user",
                 create: "/admin/user/create",

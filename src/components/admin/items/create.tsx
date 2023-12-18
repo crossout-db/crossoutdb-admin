@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
 import { Create, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker, Checkbox, InputNumber } from "antd";
 import dayjs from "dayjs";
+import { trpc } from "~/lib/trpc";
+import { db } from "@server/db";
+import { Prisma } from "@prisma/client";
 
-export const ItemCreate: React.FC<IResourceComponentsProps> = () => {
+interface ItemCreateProps extends IResourceComponentsProps {
+    maxItemId?: number;
+}
+
+export const ItemCreate: React.FC<ItemCreateProps> = ({ maxItemId }) => {
     const translate = useTranslate();
     const { formProps, saveButtonProps, queryResult } = useForm();
 
@@ -38,6 +45,16 @@ export const ItemCreate: React.FC<IResourceComponentsProps> = () => {
         optionLabel: "name",
     });
 
+    
+    const newName = ('0000'+maxItemId).slice(-4);
+    console.log(newName);
+
+    useEffect(() => {
+        if (newName !== "0000") {
+            formProps?.form?.setFieldValue("name", `Item${newName}_`);
+        }
+    });
+
     return (
         <Create saveButtonProps={saveButtonProps}>
             <Form {...formProps} layout="vertical">
@@ -47,6 +64,17 @@ export const ItemCreate: React.FC<IResourceComponentsProps> = () => {
                     rules={[
                         {
                             required: true,
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    label={translate("fields.marketDef")}
+                    name={["marketDef"]}
+                    rules={[
+                        {
+                            required: false,
                         },
                     ]}
                 >
