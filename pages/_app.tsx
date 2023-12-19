@@ -362,6 +362,9 @@ const App = (props: React.PropsWithChildren) => {
                 create: "/admin/translation/:key/create",
                 edit: "/admin/translation/edit/:id",
                 show: "/admin/translation/show/:id",
+                meta: {
+                  hide: hideAdminResources,
+                },
               },
               {
                 name: "user",

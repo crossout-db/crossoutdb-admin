@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { getServerSession } from "next-auth";
-import { authOptions } from "@server/auth";
+import { getServerAuthSession } from "@server/auth";
 import { BadgeExchangeEdit } from "@components/admin/badgeexchanges";
 
 export default function BadgeExchangePageEdit() {
@@ -10,7 +10,7 @@ export default function BadgeExchangePageEdit() {
 }
 
 export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
+  const session = await getServerAuthSession(context);
 
   const translateProps = await serverSideTranslations(context.locale ?? "en", [
     "common",
