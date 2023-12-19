@@ -13,15 +13,31 @@ import {
   ShowButton,
   DateField,
   BooleanField,
+  DeleteButton,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
-export const RecipeList: React.FC<IResourceComponentsProps> = () => {
+interface RecipeListProps extends IResourceComponentsProps {
+  parentId?: number;
+}
+
+export const RecipeList: React.FC<RecipeListProps> = ({ parentId }) => {
   const locale = useGetLocale();
   const lang = locale();
   const translate = useTranslate();
   const { tableProps } = useTable({
-    syncWithLocation: true,
+    syncWithLocation: false,
+    resource: "recipe",
+    filters: {
+      mode: "server",
+      permanent: [
+        {
+          field: "itemId",
+          operator: "eq",
+          value: parentId,
+        },
+      ],
+    },
   });
 
   const { data: itemData, isLoading: itemIsLoading } = useMany({
@@ -50,7 +66,12 @@ export const RecipeList: React.FC<IResourceComponentsProps> = () => {
   });
 
   return (
-    <List>
+    <List
+      resource="recipe"
+      breadcrumb
+      canCreate={!!parentId}
+      createButtonProps={{ meta: { itemId: parentId } }}
+    >
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title={translate("fields.id")} />
         <Table.Column dataIndex="name" title={translate("fields.name")} />
@@ -96,8 +117,26 @@ export const RecipeList: React.FC<IResourceComponentsProps> = () => {
           dataIndex="actions"
           render={(_, record: BaseRecord) => (
             <Space>
-              <EditButton hideText size="small" recordItemId={record.id} />
-              <ShowButton hideText size="small" recordItemId={record.id} />
+              <EditButton
+                resource="recipe"
+                hideText
+                size="small"
+                recordItemId={record.id}
+              />
+              <ShowButton
+                resource="recipe"
+                hideText
+                size="small"
+                recordItemId={record.id}
+              />
+              {parentId && (
+                <DeleteButton
+                  resource="recipe"
+                  hideText
+                  size="small"
+                  recordItemId={record.id}
+                />
+              )}
             </Space>
           )}
         />

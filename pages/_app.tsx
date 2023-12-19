@@ -295,7 +295,7 @@ const App = (props: React.PropsWithChildren) => {
                 name: "recipe",
                 identifier: "recipe",
                 list: "/admin/recipe",
-                create: "/admin/recipe/create",
+                create: "/admin/recipe/:itemId/create",
                 edit: "/admin/recipe/edit/:id",
                 show: "/admin/recipe/show/:id",
                 meta: {

@@ -5,6 +5,7 @@ import { Form, Input, Select, DatePicker, Checkbox, InputNumber } from "antd";
 import dayjs from "dayjs";
 import { ItemStatList } from "../itemstats";
 import { TranslationList } from "../translations";
+import { RecipeList } from "../recipes";
 
 export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
@@ -233,6 +234,7 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                 </Form.Item>
             </Form>
             {itemData?.id && <TranslationList parentId={itemData?.name} />}
+            {itemData?.id && <RecipeList parentId={itemData?.id as number} />}
             {itemData?.id && <ItemStatList parentId={itemData?.id as number} />}
         </Edit>
     );

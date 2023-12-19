@@ -17,6 +17,7 @@ import {
 import { Typography } from "antd";
 import { ItemStatList } from "../itemstats";
 import { TranslationList } from "../translations";
+import { RecipeList } from "../recipes";
 
 const { Title } = Typography;
 
@@ -114,6 +115,7 @@ export const ItemShow: React.FC<IResourceComponentsProps> = () => {
             <Title level={5}>{translate("fields.active")}</Title>
             <BooleanField value={record?.active} />
             {record?.id && <TranslationList parentId={record?.name} />}
+            {record?.id && <RecipeList parentId={record?.id as number} />}
             {record?.id && <ItemStatList parentId={record?.id as number} />}
         </Show>
     );
