@@ -16,12 +16,6 @@
                 "adminPage": "Admin Page"
             }
         },
-        "admin": {
-            "title": "Admin Page",
-            "users": "Users",
-            "items": "Items",
-            "recipes": "Recipes"
-        },
         "login": {
             "title": "Sign in to your account",
             "signin": "Sign in",
@@ -156,6 +150,12 @@
     "table": {
         "actions": "Actions"
     },
+    "language": {
+        "en": "English",
+        "de": "Deutsch",
+        "ru": "Русский",
+        "zh": "中文"
+    },
     "fields": {
         "id": "ID",
         "name": "Name",
@@ -240,7 +240,9 @@
         "sellOrders": "Sell Orders",
         "buyPriceMax": "Buy Price Max",
         "buyOrders": "Buy Orders",
+        "craftProfit": "Craft Profit",
         "profit": "Profit",
+        "craftRoi": "Craft ROI",
         "roi": "ROI",
         "badge": "Badge",
         "badges": "Badges",

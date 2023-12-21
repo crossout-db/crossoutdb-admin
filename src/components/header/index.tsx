@@ -1,6 +1,6 @@
 import { DownOutlined } from "@ant-design/icons";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
-import { useGetIdentity, useGetLocale } from "@refinedev/core";
+import { useGetIdentity, useGetLocale, useTranslate } from "@refinedev/core";
 import {
   Avatar,
   Button,
@@ -34,22 +34,23 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   const { token } = useToken();
   const { mode, setMode } = useContext(ColorModeContext);
 
+  const translate = useTranslate();
   const locale = useGetLocale();
   const { locales } = useRouter();
   const currentLocale = locale();
 
-  const menuItems: MenuProps["items"] = [...(locales || [])]
+  const menuLocaleItems: MenuProps["items"] = [...(locales || [])]
     .sort()
-    .map((lang: string) => ({
-      key: lang,
+    .map((locale: string) => ({
+      key: locale,
       icon: (
         <span style={{ marginRight: 8 }}>
-          <Avatar size={16} src={`/images/flags/${lang}.svg`} />
+          <Avatar size={16} src={`/images/flags/${locale}.svg`} />
         </span>
       ),
       label: (
-        <Link href="/" locale={lang}>
-          {lang === "en" ? "English" : "German"}
+        <Link href="/" locale={locale}>
+          {translate("language."+locale, locale)}
         </Link>
       ),
     }));
@@ -74,14 +75,14 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
       <Space>
         <Dropdown
           menu={{
-            items: menuItems,
+            items: menuLocaleItems,
             selectedKeys: currentLocale ? [currentLocale] : [],
           }}
         >
           <Button type="text">
             <Space>
               <Avatar size={16} src={`/images/flags/${currentLocale}.svg`} />
-              {currentLocale === "en" ? "English" : "German"}
+              {translate("language."+currentLocale, currentLocale)}
               <DownOutlined />
             </Space>
           </Button>
