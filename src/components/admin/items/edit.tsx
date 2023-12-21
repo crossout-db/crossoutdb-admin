@@ -222,7 +222,6 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                 >
                     <DatePicker />
                 </Form.Item> */}
-<<<<<<< HEAD
           <Form.Item
             label={translate("fields.saleable")}
             valuePropName="checked"
@@ -244,26 +243,4 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
       {itemData?.id && <ItemStatList parentId={itemData?.id as number} />}
     </>
   );
-=======
-                <Form.Item
-                    label={translate("fields.saleable")}
-                    valuePropName="checked"
-                    name={["saleable"]}
-                >
-                    <Checkbox>Saleable</Checkbox>
-                </Form.Item>
-                <Form.Item
-                    label={translate("fields.active")}
-                    valuePropName="checked"
-                    name={["active"]}
-                >
-                    <Checkbox>Active</Checkbox>
-                </Form.Item>
-            </Form>
-            {itemData?.id && <TranslationList parentId={itemData?.name} />}
-            {itemData?.id && <RecipeList parentId={itemData?.id as number} />}
-            {itemData?.id && <ItemStatList parentId={itemData?.id as number} />}
-        </Edit>
-    );
->>>>>>> 1ce85965d16673b9cee5157c01dfb515215e813f
 };
