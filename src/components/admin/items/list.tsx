@@ -5,6 +5,7 @@ import {
   useTranslate,
   useMany,
   useGetLocale,
+  CrudFilter,
 } from "@refinedev/core";
 import {
   useTable,
@@ -17,12 +18,13 @@ import {
   useSelect,
 } from "@refinedev/antd";
 import { Table, Space, Select } from "antd";
+import { ItemIncludeTranslation } from "pages/_app";
 
 export const ItemList: React.FC<IResourceComponentsProps> = () => {
   const locale = useGetLocale();
   const lang = locale();
   const translate = useTranslate();
-  const { tableProps } = useTable({
+  const { tableProps, filters, setFilters } = useTable({
     syncWithLocation: true,
     meta: {
       include: {
@@ -31,9 +33,48 @@ export const ItemList: React.FC<IResourceComponentsProps> = () => {
             languageCode: lang,
           },
         },
+        recipes: true,
       },
     },
   });
+
+  const missingTranslations: CrudFilter = {
+    field: "translations",
+    operator: "null",
+    value: {},
+  };
+
+  const missingRecipes: CrudFilter[] = [
+    {
+      field: "recipes",
+      operator: "null",
+      value: {},
+    },
+    {
+      field: "categoryId",
+      operator: "in",
+      value: [1,2,3,4], //[1,2,3,4,12],
+    },
+    {
+      field: "factionId",
+      operator: "ne",
+      value: 99,
+    },
+    {
+      field: "id",
+      operator: "gt",
+      value: 1686,
+    },
+    {
+      field: "active",
+      operator: "eq",
+      value: true,
+    },
+  ];
+
+//   React.useEffect(() => {
+//     setFilters((filters) => [...missingRecipes]);
+//   }, []);
 
   const { data: typeData, isLoading: typeIsLoading } = useMany({
     resource: "type",
@@ -67,17 +108,23 @@ export const ItemList: React.FC<IResourceComponentsProps> = () => {
     },
   });
 
-  const { selectProps: itemSelectProps } = useSelect({
-    resource: "item",
-    optionLabel: "name",
-    optionValue: "id",
-    sorters: [
-      {
-        field: "id",
-        order: "asc",
-      },
-    ],
-  });
+  const { selectProps: itemSelectProps } =
+    useSelect({
+      resource: "item",
+      optionLabel: "id",
+      optionValue: "id",
+      sorters: [
+        {
+          field: "id",
+          order: "asc",
+        },
+      ],
+    });
+
+  const itemSelectOptions = tableProps.dataSource?.map((item) => ({
+    label: (item as ItemIncludeTranslation).translations[0]?.value ?? item.name,
+    value: (item as ItemIncludeTranslation).id,
+  }));
 
   return (
     <List>
@@ -101,10 +148,26 @@ export const ItemList: React.FC<IResourceComponentsProps> = () => {
           dataIndex="name"
           title={translate("fields.name")}
           render={(value) => {
-            const item = tableProps.dataSource?.find((item) => item.name === value);
+            const item = tableProps.dataSource?.find(
+              (item) => item.name === value
+            );
             return item?.translations[0]?.value ?? item?.name ?? "Loading...";
           }}
-          sorter
+          filterDropdown={(props) => (
+            <FilterDropdown {...props}>
+              <Select
+                style={{ minWidth: 200 }}
+                mode="multiple"
+                placeholder="Select Item"
+                onSearch={undefined}
+                filterOption={true}
+                optionFilterProp="label"
+                showSearch={true}
+                options={itemSelectOptions}
+              />
+            </FilterDropdown>
+          )}
+        //   sorter
         />
         <Table.Column
           dataIndex="quantity"
@@ -117,9 +180,14 @@ export const ItemList: React.FC<IResourceComponentsProps> = () => {
             typeIsLoading ? (
               <>Loading...</>
             ) : (
-                translate(`db.type.${typeData?.data?.find((item) => item.id === value)?.name}`)
+              translate(
+                `db.type.${
+                  typeData?.data?.find((item) => item.id === value)?.name
+                }`
+              )
             )
           }
+          sorter
         />
 
         <Table.Column
@@ -129,9 +197,14 @@ export const ItemList: React.FC<IResourceComponentsProps> = () => {
             categoryIsLoading ? (
               <>Loading...</>
             ) : (
-                translate(`db.category.${categoryData?.data?.find((item) => item.id === value)?.name}`)
+              translate(
+                `db.category.${
+                  categoryData?.data?.find((item) => item.id === value)?.name
+                }`
+              )
             )
           }
+          sorter
         />
         <Table.Column
           dataIndex={["factionId"]}

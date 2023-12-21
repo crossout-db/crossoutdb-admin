@@ -56,10 +56,10 @@ export const dataProvider = (
         if (mode === "server") {
             query.take = pageSize; //current * pageSize
             query.skip = (current - 1) * pageSize;
-            query.orderBy = generateSort(sorters);
-            query.where = generateFilter(filters);
-            filterQuery.where = query.where;
         }
+        query.orderBy = generateSort(sorters);
+        query.where = generateFilter(filters);
+        filterQuery.where = query.where;
 
         const urlTRPC = `${url}?batch=1&input={"0":{"json":${JSON.stringify(
             filterQuery
@@ -335,6 +335,8 @@ export const mapOperator = (operator: CrudOperators): string => {
             return "startsWith";
         case "endswith":
             return "endsWith";
+        case "null":
+            return "none";
         default:
             return "";
     }

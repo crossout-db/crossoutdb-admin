@@ -1,5 +1,8 @@
 import React from "react";
-import { IResourceComponentsProps, useGetLocale, useTranslate } from "@refinedev/core";
+import {
+  IResourceComponentsProps,
+  useTranslate,
+} from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select, DatePicker, Checkbox, InputNumber } from "antd";
 import dayjs from "dayjs";
@@ -8,148 +11,149 @@ import { TranslationList } from "../translations";
 import { RecipeList } from "../recipes";
 
 export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
-    const translate = useTranslate();
-    const { formProps, saveButtonProps, queryResult } = useForm();
+  const translate = useTranslate();
+  const { formProps, saveButtonProps, queryResult } = useForm();
 
-    const itemData = queryResult?.data?.data;
+  const itemData = queryResult?.data?.data;
 
-    const { selectProps: typeSelectProps } = useSelect({
-        resource: "type",
-        defaultValue: itemData?.typeId,
-        optionLabel: "name",
-    });
+  const { selectProps: typeSelectProps } = useSelect({
+    resource: "type",
+    defaultValue: itemData?.typeId,
+    optionLabel: "name",
+  });
 
-    const typeSelectOptions = typeSelectProps.options?.map((option) => ({
-        label: translate(`db.type.${option.label}`),
-        value: option.value,
-    }));
+  const typeSelectOptions = typeSelectProps.options?.map((option) => ({
+    label: translate(`db.type.${option.label}`),
+    value: option.value,
+  }));
 
-    const { selectProps: categorySelectProps } = useSelect({
-        resource: "category",
-        defaultValue: itemData?.categoryId,
-        optionLabel: "name",
-    });
+  const { selectProps: categorySelectProps } = useSelect({
+    resource: "category",
+    defaultValue: itemData?.categoryId,
+    optionLabel: "name",
+  });
 
-    const categorySelectOptions = categorySelectProps.options?.map((option) => ({
-        label: translate(`db.category.${option.label}`),
-        value: option.value,
-    }));
+  const categorySelectOptions = categorySelectProps.options?.map((option) => ({
+    label: translate(`db.category.${option.label}`),
+    value: option.value,
+  }));
 
-    const { selectProps: factionSelectProps } = useSelect({
-        resource: "faction",
-        defaultValue: itemData?.factionId,
-        optionLabel: "name",
-    });
+  const { selectProps: factionSelectProps } = useSelect({
+    resource: "faction",
+    defaultValue: itemData?.factionId,
+    optionLabel: "name",
+  });
 
-    const { selectProps: raritySelectProps } = useSelect({
-        resource: "rarity",
-        defaultValue: itemData?.rarityId,
-        optionLabel: "name",
-    });
+  const { selectProps: raritySelectProps } = useSelect({
+    resource: "rarity",
+    defaultValue: itemData?.rarityId,
+    optionLabel: "name",
+  });
 
-    return (
-        <Edit saveButtonProps={saveButtonProps}>
-            <Form {...formProps} layout="vertical">
-                <Form.Item
-                    label={translate("fields.id")}
-                    name={["id"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input readOnly disabled />
-                </Form.Item>
-                <Form.Item
-                    label={translate("fields.marketDef")}
-                    name={["marketDef"]}
-                    rules={[
-                        {
-                            required: false,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label={translate("fields.name")}
-                    name={["name"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label={translate("fields.quantity")}
-                    name={["quantity"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <InputNumber />
-                </Form.Item>
-                <Form.Item
-                    label={translate("fields.type")}
-                    name={"typeId"}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select options={typeSelectOptions} />
-                </Form.Item>
-                <Form.Item
-                    label={translate("fields.category")}
-                    name={"categoryId"}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select options={categorySelectOptions} />
-                </Form.Item>
-                <Form.Item
-                    label={translate("fields.faction")}
-                    name={"factionId"}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...factionSelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label={translate("fields.rarity")}
-                    name={"rarityId"}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Select {...raritySelectProps} />
-                </Form.Item>
-                <Form.Item
-                    label={translate("fields.level")}
-                    name={["level"]}
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <InputNumber />
-                </Form.Item>
-                {/* <Form.Item
+  return (
+    <>
+      <Edit saveButtonProps={saveButtonProps}>
+        <Form {...formProps} layout="vertical">
+          <Form.Item
+            label={translate("fields.id")}
+            name={["id"]}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input readOnly disabled />
+          </Form.Item>
+          <Form.Item
+            label={translate("fields.marketDef")}
+            name={["marketDef"]}
+            rules={[
+              {
+                required: false,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={translate("fields.name")}
+            name={["name"]}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={translate("fields.quantity")}
+            name={["quantity"]}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <InputNumber />
+          </Form.Item>
+          <Form.Item
+            label={translate("fields.type")}
+            name={"typeId"}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Select options={typeSelectOptions} />
+          </Form.Item>
+          <Form.Item
+            label={translate("fields.category")}
+            name={"categoryId"}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Select options={categorySelectOptions} />
+          </Form.Item>
+          <Form.Item
+            label={translate("fields.faction")}
+            name={"factionId"}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Select {...factionSelectProps} />
+          </Form.Item>
+          <Form.Item
+            label={translate("fields.rarity")}
+            name={"rarityId"}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Select {...raritySelectProps} />
+          </Form.Item>
+          <Form.Item
+            label={translate("fields.level")}
+            name={["level"]}
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <InputNumber />
+          </Form.Item>
+          {/* <Form.Item
                     label={translate("fields.sellPriceMin")}
                     name={["sellPriceMin"]}
                     rules={[
@@ -218,6 +222,29 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
                 >
                     <DatePicker />
                 </Form.Item> */}
+<<<<<<< HEAD
+          <Form.Item
+            label={translate("fields.saleable")}
+            valuePropName="checked"
+            name={["saleable"]}
+          >
+            <Checkbox>Saleable</Checkbox>
+          </Form.Item>
+          <Form.Item
+            label={translate("fields.active")}
+            valuePropName="checked"
+            name={["active"]}
+          >
+            <Checkbox>Active</Checkbox>
+          </Form.Item>
+        </Form>
+      </Edit>
+      {itemData?.id && <TranslationList parentId={itemData?.name} />}
+      {itemData?.id && <RecipeList parentId={itemData?.id as number} />}
+      {itemData?.id && <ItemStatList parentId={itemData?.id as number} />}
+    </>
+  );
+=======
                 <Form.Item
                     label={translate("fields.saleable")}
                     valuePropName="checked"
@@ -238,4 +265,5 @@ export const ItemEdit: React.FC<IResourceComponentsProps> = () => {
             {itemData?.id && <ItemStatList parentId={itemData?.id as number} />}
         </Edit>
     );
+>>>>>>> 1ce85965d16673b9cee5157c01dfb515215e813f
 };

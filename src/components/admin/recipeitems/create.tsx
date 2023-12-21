@@ -66,6 +66,13 @@ export const RecipeItemCreate: React.FC<IResourceComponentsProps> = () => {
           },
         },
       },
+      filters: [
+        {
+          field: "active",
+          operator: "eq",
+          value: true,
+        },
+      ],
     });
 
   const itemSelectOptions = itemQueryResults.data?.data.map((item) => ({
@@ -96,7 +103,13 @@ export const RecipeItemCreate: React.FC<IResourceComponentsProps> = () => {
             },
           ]}
         >
-          <Select options={itemSelectOptions} />
+          <Select
+            onSearch={undefined}
+            filterOption={true}
+            optionFilterProp="label"
+            showSearch={true}
+            options={itemSelectOptions}
+          />
         </Form.Item>
         <Form.Item
           label={translate("fields.quantity")}

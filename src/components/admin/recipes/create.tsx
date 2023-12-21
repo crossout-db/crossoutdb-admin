@@ -48,6 +48,15 @@ export const RecipeCreate: React.FC<IResourceComponentsProps> = () => {
   const { selectProps: releaseSelectProps } = useSelect({
     resource: "release",
     optionLabel: "name",
+<<<<<<< HEAD
+    sorters: [
+      {
+        field: "id",
+        order: "desc",
+      },
+    ],
+=======
+>>>>>>> 1ce85965d16673b9cee5157c01dfb515215e813f
   });
 
   return (
@@ -61,6 +70,10 @@ export const RecipeCreate: React.FC<IResourceComponentsProps> = () => {
               required: true,
             },
           ]}
+<<<<<<< HEAD
+          initialValue="Recipe_Primary"
+=======
+>>>>>>> 1ce85965d16673b9cee5157c01dfb515215e813f
         >
           <Input />
         </Form.Item>
